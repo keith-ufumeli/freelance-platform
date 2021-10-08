@@ -3,11 +3,11 @@ import GeneralNavbar from '../components/navigation/GeneralNavbar'
 
 function GeneralLayout({children}) {
     return (
-        <div className="flex flex-col w-full">
-            <div className="header">
+        <div className=" flex flex-col w-full">
+            <div className="z-50 header">
                 <GeneralNavbar />
             </div>
-            <div className="min-h-screen bg-gray-50">
+            <div className="min-h-screen">
                 {children}
             </div>
             <div className="footer">
