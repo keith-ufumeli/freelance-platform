@@ -3,7 +3,7 @@ import { apiUrl } from "../../utils/apiUrl"
 import { REGISTER_USER_FAIL, REGISTER_USER_REQUEST, REGISTER_USER_SUCCESS } from "../constants/authConstants"
 
 // regsiter user action
-export const register_user_Action = ({ email, username, password, password2 }) => (dispatch) => {
+export const register_user_Action = ( email, username, password, password2 ) => (dispatch) => {
     dispatch({
         type: REGISTER_USER_REQUEST,
         payload: email, username, password
@@ -18,10 +18,12 @@ export const register_user_Action = ({ email, username, password, password2 }) =
             type: REGISTER_USER_SUCCESS,
             payload: res.data
         })
-    }).catch(err => {
+    }).catch(error => {
         dispatch({
             type: REGISTER_USER_FAIL,
-            payload: res.data.error
+            payload: error.response && error.response.data.error
+                ? error.response.data.error
+                : error.message,
         })
     })
 }

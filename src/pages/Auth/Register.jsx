@@ -3,6 +3,9 @@ import GeneralLayout from '../../layouts/GeneralLayout'
 import { EyeIcon, EyeOffIcon } from "@heroicons/react/solid";
 import BlueButton from '../../components/Buttons/BlueButton';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { register_user_Action } from '../../redux/actions/authActions';
+import Error from '../../components/Alerts/Error';
 
 function Register() {
     const [email, setEmail] = useState("");
@@ -11,11 +14,16 @@ function Register() {
     const [username, setUsername] = useState("")
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [passwordVisible2, setPasswordVisible2] = useState(false);
+    const dispatch = useDispatch()
+    const [err, setErr] = useState('')
 
     const register_user = () => {
-        console.info('user registerred')
+        if(password !== passwor2){
+            setErr('Passwords do not match')
+        }else{
+            dispatch(register_user_Action(email, username, password, passwor2))
+        }
     }
-
 
     return (
         <GeneralLayout>
@@ -119,8 +127,11 @@ function Register() {
                     <p className="text-xs text-gray-500 dark:text-gray-400 font-semibold">
                         By signing up you agree to our terms and conditions of use
                     </p>
+                    <div className="flex flex-col md:w-2/5 w-4/5 my-2">
+                        {err && <Error text={err} />}
+                    </div>
                     <div className="flex flex-col md:w-2/5 w-4/5 my-2 items-center">
-                        <BlueButton text={'Register'} />
+                        <BlueButton text={'Register'} onClick={register_user} />
                     </div>
                     <p className="text-gray-500 dark:text-gray-200 mt-2 text-sm">
                         Already registered? <Link to="/login">Sign In here</Link>
