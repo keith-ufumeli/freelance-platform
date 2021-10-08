@@ -3,7 +3,7 @@ import thunk from "redux-thunk";
 import { login_user_Reducer, register_user_Reducer } from "./reducers/authReducers";
 
 const initialState = {
-  userCredsSignIn: {
+  user_login: {
     userInfo: localStorage.getItem("userInfo")
       ? JSON.parse(localStorage.getItem("userInfo"))
       : null,
