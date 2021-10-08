@@ -4,6 +4,7 @@ import { MenuAlt2Icon, XIcon } from '@heroicons/react/outline'
 import { Link } from 'react-router-dom'
 import logo from '../../assets/Daypitch_logo.svg'
 import {nav_options} from '../../utils/nav_options'
+import { useDispatch, useSelector } from 'react-redux'
 import UserAvatar from '../UserAvatar/UserAvatar'
 
 function classNames(...classes) {
