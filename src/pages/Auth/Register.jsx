@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { register_user_Action } from '../../redux/actions/authActions';
 import Error from '../../components/Alerts/Error';
+import { useSelector } from 'react-redux';
+import Success from '../../components/Alerts/Success';
 
 function Register() {
     const [email, setEmail] = useState("");
@@ -16,6 +18,8 @@ function Register() {
     const [passwordVisible2, setPasswordVisible2] = useState(false);
     const dispatch = useDispatch()
     const [err, setErr] = useState('')
+    const _register = useSelector(state => state.user_register)
+    const {loading, message, error} = _register
 
     const register_user = () => {
         if(password !== passwor2){
@@ -129,9 +133,11 @@ function Register() {
                     </p>
                     <div className="flex flex-col md:w-2/5 w-4/5 my-2">
                         {err && <Error text={err} />}
+                        {error && <Error text={error} />}
+                        {message && <Success text={message} />}
                     </div>
                     <div className="flex flex-col md:w-2/5 w-4/5 my-2 items-center">
-                        <BlueButton text={'Register'} onClick={register_user} />
+                        <BlueButton text={'Register'} onClick={register_user} loading={loading} />
                     </div>
                     <p className="text-gray-500 dark:text-gray-200 mt-2 text-sm">
                         Already registered? <Link to="/login">Sign In here</Link>

@@ -8,7 +8,7 @@ export const register_user_Action = ( email, username, password, password2 ) => 
         type: REGISTER_USER_REQUEST,
         payload: email, username, password
     })
-    axios.post(`${apiUrl}/auth/regsiter`, {
+    axios.post(`${apiUrl}/auth/register`, {
         email: email,
         username: username,
         password: password,
