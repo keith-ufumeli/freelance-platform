@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import GeneralLayout from '../../layouts/GeneralLayout'
 import { EyeIcon, EyeOffIcon } from "@heroicons/react/solid";
 import BlueButton from '../../components/Buttons/BlueButton';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { register_user_Action } from '../../redux/actions/authActions';
 import Error from '../../components/Alerts/Error';
@@ -17,17 +17,26 @@ function Register() {
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [passwordVisible2, setPasswordVisible2] = useState(false);
     const dispatch = useDispatch()
+    const history = useHistory()
     const [err, setErr] = useState('')
     const _register = useSelector(state => state.user_register)
-    const {loading, message, error} = _register
+    const { loading, message, error } = _register
 
     const register_user = () => {
-        if(password !== passwor2){
+        if (password !== passwor2) {
             setErr('Passwords do not match')
-        }else{
+        } else {
             dispatch(register_user_Action(email, username, password, passwor2))
         }
     }
+
+    useEffect(() => {
+        if (message === 'Register Success!') {
+            setTimeout(() => {
+                history.push('/login')
+            }, 1500);
+        }
+    }, [message])
 
     return (
         <GeneralLayout>
