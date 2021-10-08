@@ -1,6 +1,6 @@
 import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import thunk from "redux-thunk";
-import { register_user_Reducer } from "./reducers/authReducers";
+import { login_user_Reducer, register_user_Reducer } from "./reducers/authReducers";
 
 const initialState = {
   userCredsSignIn: {
@@ -12,6 +12,7 @@ const initialState = {
 const reducer = combineReducers({
     //this is where all the reducers go
     user_register: register_user_Reducer,
+    user_login: login_user_Reducer
 });
 
 const composeForBrowser =

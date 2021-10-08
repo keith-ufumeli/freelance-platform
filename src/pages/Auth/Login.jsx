@@ -1,13 +1,35 @@
-import React, {useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import GeneralLayout from '../../layouts/GeneralLayout'
 import { EyeIcon, EyeOffIcon } from "@heroicons/react/solid";
 import BlueButton from '../../components/Buttons/BlueButton';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { login_user_Action } from '../../redux/actions/authActions';
+import Error from '../../components/Alerts/Error';
+import Success from '../../components/Alerts/Success';
 
 function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [passwordVisible, setPasswordVisible] = useState(false);
+    const _login = useSelector(state => state.user_login)
+    const { loading, message, error } = _login
+    const dispatch = useDispatch()
+    const history = useHistory()
+
+    const login_user = () => {
+        dispatch(login_user_Action(email, password))
+    }
+
+    useEffect(() => {
+        if (message === 'Login Success!') {
+            setTimeout(() => {
+                history.push('/')
+            }, 1500);
+        }
+    }, [message, history])
+
 
     return (
         <GeneralLayout>
@@ -63,8 +85,13 @@ function Login() {
                         </div>
                     </div>
 
+                    <div className="my-2 flex flex-col md:w-2/5 w-4/5">
+                        {error && <Error text={error} />}
+                        {message && <Success text={message} />}
+                    </div>
+
                     <div className="flex flex-col md:w-2/5 w-4/5 my-2 items-center">
-                        <BlueButton text={'Register'} />
+                        <BlueButton text={'Login'} loading={loading} onClick={login_user} />
                     </div>
                     <p className="text-gray-500 dark:text-gray-200 mt-2 text-sm">
                         No registered yet? <Link to="/register">Regsiter here</Link>

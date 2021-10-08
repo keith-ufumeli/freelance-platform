@@ -36,7 +36,7 @@ function Register() {
                 history.push('/login')
             }, 1500);
         }
-    }, [message])
+    }, [message, history])
 
     return (
         <GeneralLayout>
