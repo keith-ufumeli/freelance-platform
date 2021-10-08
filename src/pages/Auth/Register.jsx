@@ -12,6 +12,9 @@ function Register() {
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [passwordVisible2, setPasswordVisible2] = useState(false);
 
+    const register_user = () => {
+        console.info('user registerred')
+    }
 
 
     return (
@@ -117,7 +120,7 @@ function Register() {
                         By signing up you agree to our terms and conditions of use
                     </p>
                     <div className="flex flex-col md:w-2/5 w-4/5 my-2 items-center">
-                        <BlueButton text={'Register'} loading />
+                        <BlueButton text={'Register'} />
                     </div>
                     <p className="text-gray-500 dark:text-gray-200 mt-2 text-sm">
                         Already registered? <Link to="/login">Sign In here</Link>

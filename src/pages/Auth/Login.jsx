@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import GeneralLayout from '../../layouts/GeneralLayout'
 import { EyeIcon, EyeOffIcon } from "@heroicons/react/solid";
 import BlueButton from '../../components/Buttons/BlueButton';
@@ -64,7 +64,7 @@ function Login() {
                     </div>
 
                     <div className="flex flex-col md:w-2/5 w-4/5 my-2 items-center">
-                        <BlueButton text={'Register'} loading />
+                        <BlueButton text={'Register'} />
                     </div>
                     <p className="text-gray-500 dark:text-gray-200 mt-2 text-sm">
                         No registered yet? <Link to="/register">Regsiter here</Link>
