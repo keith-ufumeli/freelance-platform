@@ -1,6 +1,6 @@
 import axios from "axios"
 import { apiUrl } from "../../utils/apiUrl"
-import { CREATE_JOB_FAIL, CREATE_JOB_REQUEST, CREATE_JOB_SUCCESS, EXPLORE_JOBS_FAIL, EXPLORE_JOBS_REQUEST, EXPLORE_JOBS_SUCCESS, GET_USER_JOBS_FAIL, GET_USER_JOBS_REQUEST, GET_USER_JOBS_SUCCESS } from "../constants/jobConstants"
+import { CREATE_JOB_FAIL, CREATE_JOB_REQUEST, CREATE_JOB_SUCCESS, EXPLORE_JOBS_FAIL, EXPLORE_JOBS_REQUEST, EXPLORE_JOBS_SUCCESS, GET_SINGLE_JOB_FAIL, GET_SINGLE_JOB_REQUEST, GET_SINGLE_JOB_SUCCESS, GET_USER_JOBS_FAIL, GET_USER_JOBS_REQUEST, GET_USER_JOBS_SUCCESS, SAVE_SINGLE_JOB_REQUEST } from "../constants/jobConstants"
 
 //EXPLORE JOBS ACTION
 export const explore_jobs_Action = () => (dispatch) => {
@@ -67,5 +67,34 @@ export const create_a_job_Action = (msg_obj, token) => (dispatch) => {
                 ? error.response.data.error
                 : error.message,
         })
+    })
+}
+
+//get sinlge job action
+export const get_single_Job_Action = (id) => (dispatch) => {
+    dispatch({
+        type: GET_SINGLE_JOB_REQUEST,
+        payload: id
+    })
+    axios.get(`${apiUrl}/job/single/${id}`).then(res => {
+        dispatch({
+            type: GET_SINGLE_JOB_SUCCESS,
+            payload: res.data
+        })
+    }).catch(error => {
+        dispatch({
+            type: GET_SINGLE_JOB_FAIL,
+            payload: error.response && error.response.data.error
+                ? error.response.data.error
+                : error.message,
+        })
+    })
+}
+
+//SAVE singLe job action
+export const save_single_Job_Action = (id) => (dispatch) => {
+    dispatch({
+        type: SAVE_SINGLE_JOB_REQUEST,
+        payload: id
     })
 }

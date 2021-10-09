@@ -1,7 +1,7 @@
 import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import thunk from "redux-thunk";
 import { login_user_Reducer, register_user_Reducer } from "./reducers/authReducers";
-import { create_a_job_Reducer, explore_jobs_Reducer, get_user_jobs_Reducer } from "./reducers/jobsReducers";
+import { create_a_job_Reducer, explore_jobs_Reducer, get_single_job_Reducer, get_user_jobs_Reducer } from "./reducers/jobsReducers";
 import { create_a_service_Reducer, edit_a_service_Reducer } from "./reducers/serviceReducers";
 
 const initialState = {
@@ -20,6 +20,7 @@ const reducer = combineReducers({
     user_jobs: get_user_jobs_Reducer,
     create_job: create_a_job_Reducer,
     all_jobs: explore_jobs_Reducer,
+    single_job: get_single_job_Reducer,
 
     //for services
     create_service: create_a_service_Reducer,
