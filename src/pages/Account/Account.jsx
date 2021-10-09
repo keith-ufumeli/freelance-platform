@@ -1,10 +1,11 @@
 import React from 'react'
+import AccountLayout from '../../layouts/AccountLayout'
 
 function Account() {
     return (
-        <div>
+        <AccountLayout>
             account
-        </div>
+        </AccountLayout>
     )
 }
 
