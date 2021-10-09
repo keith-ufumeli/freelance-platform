@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import {
-    Button,
     Drawer,
     DrawerBody,
     DrawerCloseButton,
@@ -20,7 +19,7 @@ import GeneralLayout from "../../layouts/GeneralLayout";
 import { get_single_Job_Action } from "../../redux/actions/jobActions";
 import Success from "../../components/Alerts/Success";
 import Error from "../../components/Alerts/Error";
-import moment from 'moment'
+import BlueButton from "../../components/Buttons/BlueButton";
 
 export default function SingleJob() {
     let { id } = useParams();
@@ -110,15 +109,7 @@ export default function SingleJob() {
                                 </Button>
                             )} */}
 
-                            <Button
-                                ref={btnRef}
-                                colorScheme="blue"
-                                onClick={onOpen}
-                                type="button"
-                                className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded shadow-sm text-white bg-blue-900 hover:bg-blue-800 focus:outline-none"
-                            >
-                                Send Proposal
-                            </Button>
+                            <BlueButton text={'Send proposal'} onClick={onOpen} />
                             <Drawer
                                 isOpen={isOpen}
                                 placement="right"
@@ -249,16 +240,13 @@ export default function SingleJob() {
                                     {/* {create_message && <Success text={create_message} />}
                                     {create_error && <Error text={create_error} />} */}
                                     <DrawerFooter>
-                                        <Button variant="outline" mr={3} onClick={onClose}>
-                                            Cancel
-                                        </Button>
-                                        <Button
-                                            onClick={send_proposal}
-                                            colorScheme="blue"
-                                            // isLoading={create_loading}
-                                        >
-                                            Send Proposal
-                                        </Button>
+                                        <div className="flex mr-4">
+                                            <BlueButton outline text="Cancel" onClick={onClose} />
+                                        </div>
+                                        <div className="flex">
+                                            <BlueButton onClick={send_proposal} text="Send proposal" />
+                                        </div>
+                                    
                                     </DrawerFooter>
                                 </DrawerContent>
                             </Drawer>
