@@ -2,47 +2,29 @@ import { Text } from '@chakra-ui/react'
 import { CalendarIcon, ChatAltIcon } from '@heroicons/react/outline'
 import { BadgeCheckIcon } from '@heroicons/react/solid'
 import React from 'react'
-import { useEffect } from 'react'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
-import { db } from '../../helpers/firebase'
+import UserAvatar from '../UserAvatar/UserAvatar'
 
 function ExploreRight() {
-    const userSignin = useSelector(state => state.userCredsSignIn)
+    const userSignin = useSelector(state => state.user_login)
     const { userInfo } = userSignin
     const history = useHistory()
     const [user, setUser] = useState()
     const [user_loading, setUserLoading] = useState(false)
 
-    useEffect(() => {
-        setUserLoading(true)
-        db.collection('users').doc(userInfo?.user?.uid).onSnapshot(doc => {
-            console.log(doc.data())
-            setUser(doc.data())
-            setUserLoading(false)
-        }, (err) => {
-            console.log(err)
-            setUserLoading(false)
-        })
-    }, [userInfo?.user?.uid])
 
     return (
-        <>
+        <div className="max-w-lg">
             {
                 userInfo ? (
                     <div className="w-full flex flex-col">
                         <span onClick={() => history.push('/account')} className="flex flex-row items-center mb-8">
                             {
-                                userInfo?.user?.photoURL ? (<div className="h-12 w-12 bg-white rounded-full overflow-hidden mr-2">
-                                    <img src={userInfo?.user?.photoURL} alt="user_pic" className="object-contain" />
-                                </div>) : (
-                                    <span className="inline-flex items-center justify-center h-14 w-14 rounded-full bg-gray-500 mr-2">
-                                        <span className="text-xl font-medium leading-none text-white">{userInfo?.user?.email.slice(0, 2)}</span>
-                                    </span>
-                                )
+                                <UserAvatar picture={userInfo?.user?.photoURL} />
                             }
-                            <p className="text-gray-700 font-semibold">My Account</p>
+                            <p className="text-gray-700 font-semibold ml-2">My Account</p>
                         </span>
                         {
                             !user?.verified ? (<span onClick={() => history.push('/upgrade')} className="bg-blue-900 text-sm p-2 rounded text-white text-center w-2/3 hover:bg-blue-800 cursor-pointer">Upgrade account</span>) :
@@ -151,7 +133,7 @@ function ExploreRight() {
                     }
                 </aside>) : null
             }
-        </>
+        </div>
     )
 }
 
