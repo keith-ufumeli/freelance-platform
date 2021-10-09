@@ -103,7 +103,7 @@ function Home() {
                 </div>
 
                 {/* //categories */}
-                <div className="md:pt-28 pt-40 bg-gray-50 md:px-16 px-4">
+                <div className="md:pt-28 pt-40 bg-gray-50 lg:px-32 md:px-16 px-4">
                     <p className="text-center text-gray-700 font-semibold text-4xl">
                         Categories
                     </p>
@@ -149,7 +149,7 @@ function Home() {
                 </div>
 
                 {/* // category items */}
-                <div className="flex flex-col items-center md:px-16 pt-8 px-4 z-20 pb-36 w-full bg-gray-50">
+                <div className="flex flex-col items-center lg:px-32 md:px-16 px-4 pt-8 z-20 pb-36 w-full bg-gray-50">
                     <p className="text-gray-700 text-4xl dark:text-gray-200 text-center font-semibold mb-24 md:px-32 px-8 pt-12">
                         Easily prototype and communicate your vision
                     </p>
@@ -185,7 +185,7 @@ function Home() {
                 </div>
 
                 {/* // paying boxes */}
-                <div className="flex flex-col items-center md:pt-16 md:px-16 pt-4 z-20 pb-16 bg-gray-50">
+                <div className="flex flex-col items-center md:pt-16 lg:px-32 md:px-16 px-4 pt-4 z-20 pb-16 bg-gray-50">
                     <p className="text-2xl text-gray-700 dark:text-gray-400 text-center px-8 font-semibold mb-16">
                         Professionals price arrangements
                     </p>
@@ -194,7 +194,7 @@ function Home() {
                 </div>
 
                 {/* CTA Section */}
-                <div className="bg-white">
+                <div className="bg-white lg:px-32 md:px-16 px-4">
                     <div className="max-w-4xl mx-auto py-16 px-4 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8 lg:flex lg:items-center lg:justify-between">
                         <h2 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
                             <span className="block">Ready to get started?</span>

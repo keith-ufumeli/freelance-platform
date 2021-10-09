@@ -11,14 +11,14 @@ export const nav_options = {
     SellerAuthenticatedNavigation : [
         // { name: 'Find Work', href: '/work', current: false },
         { name: 'Messages', href: '/chat', current: true },
-        { name: 'My Jobs', href: '/jobs', current: true },
+        { name: 'My Jobs', href: '/myjobs', current: true },
       
       ],
       
     BuyerAuthenticatedNavigation : [
         // { name: 'Explore Sellers', href: '/explore', current: false },
         // { name: 'Explore Jobs', href: '/explorejobs', current: true },
-        { name: 'My Jobs', href: '/jobs', current: true },
+        { name: 'My Jobs', href: '/myjobs', current: true },
         // { name: <ChatAlt2Icon height={20} width={20} className="text-gray-700" />, href: '/chat', current: true },
         { name: <span>
                 {/* <NavbarNotification/> */}
@@ -28,7 +28,7 @@ export const nav_options = {
     MobileBuyerAuthenticatedNavigation:[
       { name: 'Explore Sellers', href: '/explore', current: false },
         { name: 'Explore Jobs', href: '/explorejobs', current: true },
-        { name: 'My Jobs', href: '/jobs', current: true },
+        { name: 'My Jobs', href: '/myjobs', current: true },
         // { name: <ChatAlt2Icon height={20} width={20} className="text-gray-700" />, href: '/chat', current: true },
         { name: <span>
                 {/* <NavbarNotification/> */}
