@@ -8,7 +8,7 @@ import Success from "../../components/Alerts/Success";
 import BlueButton from "../../components/Buttons/BlueButton";
 import Tags from "../../components/tags/Tags";
 import AccountLayout from '../../layouts/AccountLayout'
-import { create_a_service_Action } from "../../redux/actions/serviceActions";
+import { create_a_service_Action, edit_a_service_Action } from "../../redux/actions/serviceActions";
 import { data } from "../../utils/data";
 
 function Profile() {
@@ -23,11 +23,13 @@ function Profile() {
     const [code, setCode] = useState("");
     const [house_number, setHouseNumber] = useState("");
     const [street, setStreet] = useState();
-    const [service, serSetvice] = useState(null)
+    const [service] = useState(null)
     const _user = useSelector(state => state.user_login)
     const { userInfo } = _user
     const _create = useSelector(state => state.create_service)
     const { create_loading, create_error, create_message } = _create
+    const _edit = useSelector(state => state.edit_service)
+    const { edit_loading, edit_error, edit_message } = _edit
 
     const selectedTags = (tags) => {
         setCatTags(tags);
@@ -46,6 +48,21 @@ function Profile() {
             tags: catTags
         }
         dispatch(create_a_service_Action(body_obj, userInfo?.token))
+    }
+
+    const edit_service = () => {
+        const body_obj = {
+            description: description,
+            price: pricerange,
+            category: selected,
+            work_area_number: house_number,
+            street_name: street,
+            postal_code: code,
+            work_area_name: city,
+            website: website,
+            tags: catTags
+        }
+        dispatch(edit_a_service_Action(body_obj, userInfo?.user?.service))
     }
 
     return (
@@ -109,8 +126,8 @@ function Profile() {
                             variant="filled"
                             className="p-2 border border-gray-300 outline-none rounded-lg bg-white"
                             placeholder={`${service
-                                    ? service.category
-                                    : "Describe yourself and/or your service with not less than 150 words"
+                                ? service.category
+                                : "Describe yourself and/or your service with not less than 150 words"
                                 }`}
                             onChange={(e) => setDescription(e.target.value)}
                             required
@@ -216,14 +233,21 @@ function Profile() {
                 <div className="flex flex-col w-full items-center my-8">
                     {create_message && <Success text={create_message} />}
                     {create_error && <Error text={create_error} />}
+                    {edit_message && <Success text={edit_message} />}
+                    {edit_error && <Error text={edit_error} />}
                     <div className="flex flex-col self-center bg-white w-full">
                         {
-                            userInfo?.user?.seller ? (<BlueButton text={'edit my profile'} />) : (
-                                <BlueButton 
-                                onClick={create_service}
-                                loading={create_loading}
-                                text={'Become a freelancer'} />
-                            )
+                            userInfo?.user?.seller ? (
+                                <BlueButton
+                                    onClick={edit_service}
+                                    loading={edit_loading}
+                                    text={'edit my profile'} />)
+                                : (
+                                    <BlueButton
+                                        onClick={create_service}
+                                        loading={create_loading}
+                                        text={'Become a freelancer'} />
+                                )
                         }
                     </div>
                 </div>
