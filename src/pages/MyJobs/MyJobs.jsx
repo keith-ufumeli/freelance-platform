@@ -2,6 +2,7 @@ import { Disclosure } from '@headlessui/react'
 import { ChevronDownIcon, PaperClipIcon } from '@heroicons/react/outline'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import Error from '../../components/Alerts/Error'
 import ContractsLayout from '../../layouts/ContractsLayout'
 import { get_user_jobs_Action } from '../../redux/actions/jobActions'
 
@@ -17,19 +18,19 @@ function MyJobs() {
         dispatch(get_user_jobs_Action(userInfo?.user?._id))
     }, [dispatch])
 
-    const onButtonClick = () =>{}
-console.info(jobs?.jobs)
+    const onButtonClick = () => { }
+
     if (loading) {
         return (
             <ContractsLayout>
-                loading...
+                <p className="text-gray-700 text-center m-2">loading...</p>
             </ContractsLayout>
         )
     }
     if (error) {
         return (
             <ContractsLayout>
-                Oops! something went wrong, try refreshing the page.
+                <Error text={'Oops! something went wrong, try refreshing the page.'} />
             </ContractsLayout>
         )
     }
@@ -45,7 +46,7 @@ console.info(jobs?.jobs)
                                 <Disclosure key={index}>
                                     {({ open }) => (
                                         <div id="my-node" className="w-full">
-                                            <Disclosure.Button className="myPage flex justify-between w-full px-4 py-2 text-sm font-medium text-left text-blue-900 bg-blue-100 rounded-sm hover:bg-blue-200 focus:outline-none focus-visible:ring focus-visible:ring-blue-500 focus-visible:ring-opacity-75">
+                                            <Disclosure.Button className="myPage flex justify-between w-full px-4 py-2 text-sm font-medium text-left text-blue-900 bg-blue-100 rounded-sm hover:bg-blue-200 focus:outline-none focus-visible:ring my-1 focus-visible:ring-blue-500 focus-visible:ring-opacity-75">
                                                 <span>{job.title !== '' ? job.title : 'No Title'}</span>
                                                 <ChevronDownIcon
                                                     className={`${open ? "transform rotate-180" : ""
@@ -125,7 +126,7 @@ console.info(jobs?.jobs)
                                                                                     aria-hidden="true"
                                                                                 />
                                                                                 <span className="ml-2 flex-1 w-0 truncate">
-                                                                                    resume_back_end_developer.pdf
+                                                                                    <span>{job.title !== '' ? job.title : 'No Title'}</span>.pdf
                                                                                 </span>
                                                                             </div>
                                                                             <div className="ml-4 flex-shrink-0">

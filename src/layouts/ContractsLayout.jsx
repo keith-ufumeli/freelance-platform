@@ -8,6 +8,9 @@ import SideDrawer from "../components/SideDrawer/SideDrawer";
 import { data } from "../utils/data";
 import GeneralLayout from "./GeneralLayout";
 import BlueButton from "../components/Buttons/BlueButton";
+import { create_a_job_Action } from "../redux/actions/jobActions";
+import Success from "../components/Alerts/Success";
+import Error from "../components/Alerts/Error";
 
 const contract_routes = [
     { name: "Contracts", location: "/contracts" },
@@ -17,37 +20,29 @@ const contract_routes = [
 export default function ContractsLayout({ children }) {
     const location = useLocation();
     const history = useHistory();
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
     const [details, setDetails] = useState("");
     const [amount, setAmount] = useState(0);
-    const [company, setCompany] = useState("");
     const [title, setTitle] = useState("");
-    const [phone_number, setPhoneNumber] = useState("");
-    // eslint-disable-next-line
-    const [category, setCategory] = useState("");
+    const [category, setCategory] = useState(data.categories[0].name);
     const [paymeny_option, setPaymentOption] = useState("");
     const [period, setPeriod] = useState("hourly");
     const _user = useSelector(state => state.user_login)
+    const _job = useSelector(state => state.create_job)
+    const { loading, message, error } = _job
     const { userInfo } = _user
     const dispatch = useDispatch();
 
     const post_job = (e) => {
         e.preventDefault();
         const msg_obj = {
-            created_by: userInfo?.user._id,
-            done_by: "",
-            name,
-            company,
-            email,
-            details,
-            phone_number,
-            amount,
+            description: details,
+            amount_to_pay: amount,
             title,
-            period,
-            category
+            paymant_period: period,
+            category,
+            payment_plan: paymeny_option
         };
-        // dispatch(create_a_job(msg_obj, auth.currentUser.uid));
+        dispatch(create_a_job_Action(msg_obj, userInfo?.token));
     };
 
     return (
@@ -57,33 +52,11 @@ export default function ContractsLayout({ children }) {
                     <>
                         <SideDrawer
                             sendButton={
-                                <BlueButton text={'Post Job'} onClick={post_job} className="rounded"/>
+                                <BlueButton text={'Post Job'} onClick={post_job} className="rounded" loading={loading} />
                             }
                             drawer_heading={"Create a job"}
                         >
                             <Stack spacing={8} pt={8}>
-                                <Input
-                                    placeholder="Your full name"
-                                    onChange={(e) => setName(e.target.value)}
-                                />
-                                {/* <Input placeholder="Job name"
-                                    onChange={e => setJobName(e.target.value)}
-                                /> */}
-                                <Input
-                                    placeholder="Company (Optional)"
-                                    onChange={(e) => setCompany(e.target.value)}
-                                />
-                                <Input
-                                    onChange={(e) => setEmail(e.target.value)}
-                                    placeholder="email"
-                                />
-                                <Input
-                                    onChange={(e) => setPhoneNumber(e.target.value)}
-                                    placeholder="phone number with country code"
-                                />
-
-                                <div className="w-full border-b flex-1 border-gray-300"></div>
-
                                 <div>
                                     <label
                                         htmlFor="location"
@@ -150,6 +123,8 @@ export default function ContractsLayout({ children }) {
                                     placeholder="Full details for the job"
                                 />
                             </Stack>
+                            {message && <Success text={message} />}
+                            {error && <Error text={error} />}
                         </SideDrawer>
                     </>
                     <div className="flex jobs w-full">
@@ -161,8 +136,8 @@ export default function ContractsLayout({ children }) {
                                             onClick={() => history.push(option.location)}
                                             key={index}
                                             className={`${location.pathname === option.location
-                                                    ? "border-b-2 border-blue-900 bg-gray-100 "
-                                                    : "border-none "
+                                                ? "border-b-2 border-blue-900 bg-gray-100 "
+                                                : "border-none "
                                                 } text-gray-700 hover:bg-gray-100 cursor-pointer py-4 mb-8 px-4 text font-semibold`}
                                         >
                                             {option.name}

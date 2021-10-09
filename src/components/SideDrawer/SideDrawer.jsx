@@ -8,11 +8,11 @@ import {
     DrawerOverlay,
     DrawerContent,
     DrawerCloseButton,
-    Button,
     useDisclosure,
 } from "@chakra-ui/react"
+import BlueButton from '../Buttons/BlueButton'
 
-export default function SideDrawer({drawer_heading, sendButton, children}) {
+export default function SideDrawer({ drawer_heading, sendButton, children }) {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const btnRef = React.useRef()
 
@@ -43,10 +43,15 @@ export default function SideDrawer({drawer_heading, sendButton, children}) {
                     </DrawerBody>
 
                     <DrawerFooter>
-                        <Button variant="outline" mr={3} onClick={onClose}>
+                        {/* <Button variant="outline" mr={3} onClick={onClose}>
                             Cancel
-                        </Button>
-                        {sendButton}
+                        </Button> */}
+                        <div className="flex mr-2">
+                            <BlueButton outline onClick={onClose} text={'Close'} />
+                        </div>
+                        <div className="flex">
+                            {sendButton}
+                        </div>
                     </DrawerFooter>
                 </DrawerContent>
             </Drawer>

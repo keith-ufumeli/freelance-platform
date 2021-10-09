@@ -1,7 +1,7 @@
 import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import thunk from "redux-thunk";
 import { login_user_Reducer, register_user_Reducer } from "./reducers/authReducers";
-import { get_user_jobs_Reducer } from "./reducers/jobsReducers";
+import { create_a_job_Reducer, get_user_jobs_Reducer } from "./reducers/jobsReducers";
 
 const initialState = {
   user_login: {
@@ -16,7 +16,8 @@ const reducer = combineReducers({
     user_login: login_user_Reducer,
 
     //for jobs
-    user_jobs: get_user_jobs_Reducer
+    user_jobs: get_user_jobs_Reducer,
+    create_job: create_a_job_Reducer
 });
 
 const composeForBrowser =
