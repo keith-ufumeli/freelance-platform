@@ -1,11 +1,11 @@
 import React from 'react'
-import GeneralLayout from '../../layouts/GeneralLayout'
+import ContractsLayout from '../../layouts/ContractsLayout'
 
 function MyJobs() {
     return (
-        <GeneralLayout>
+        <ContractsLayout>
             my jobs
-        </GeneralLayout>
+        </ContractsLayout>
     )
 }
 
