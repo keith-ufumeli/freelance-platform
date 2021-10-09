@@ -1,6 +1,27 @@
 import axios from "axios"
 import { apiUrl } from "../../utils/apiUrl"
-import { CREATE_JOB_FAIL, CREATE_JOB_REQUEST, CREATE_JOB_SUCCESS, GET_USER_JOBS_FAIL, GET_USER_JOBS_REQUEST, GET_USER_JOBS_SUCCESS } from "../constants/jobConstants"
+import { CREATE_JOB_FAIL, CREATE_JOB_REQUEST, CREATE_JOB_SUCCESS, EXPLORE_JOBS_FAIL, EXPLORE_JOBS_REQUEST, EXPLORE_JOBS_SUCCESS, GET_USER_JOBS_FAIL, GET_USER_JOBS_REQUEST, GET_USER_JOBS_SUCCESS } from "../constants/jobConstants"
+
+//EXPLORE JOBS ACTION
+export const explore_jobs_Action = () => (dispatch) => {
+    dispatch({
+        type: EXPLORE_JOBS_REQUEST
+    })
+    axios.get(`${apiUrl}/job/all`).then(res => {
+        dispatch({
+            type: EXPLORE_JOBS_SUCCESS,
+            payload: res.data
+        })
+    }).catch(error => {
+        dispatch({
+            type: EXPLORE_JOBS_FAIL,
+            payload: error.response && error.response.data.error
+                ? error.response.data.error
+                : error.message,
+        })
+    })
+}
+
 
 export const get_user_jobs_Action = (id) => (dispatch) => {
     dispatch({
