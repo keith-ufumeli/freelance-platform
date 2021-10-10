@@ -4,7 +4,7 @@ import ContractsLayout from '../../layouts/ContractsLayout'
 function Contracts() {
     return (
         <ContractsLayout>
-            you do not have any contracts at the moment
+            <p className="text-center text-gray-700 text-lg mb-4">you do not have any contracts at the moment</p>
         </ContractsLayout>
     )
 }

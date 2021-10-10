@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
+import Error from '../../components/Alerts/Error'
 import ExploreJobListItem from '../../components/ExploreItems/ExploreJobListItem'
 import ExploreLayout from '../../layouts/ExploreLayout'
 import { explore_jobs_Action } from '../../redux/actions/jobActions'
@@ -21,7 +22,7 @@ function ExploreJobs() {
                     loading ? (
                         <p className="text-lg text-gray-700 my-8 text-center">Loading...</p>
                     ) : error ? (
-                        <p className="text-lg text-gray-700 my-8 text-center">Oops! Something went wrong, try refreshing the page</p>
+                        <Error>Oops! Something went wrong, try refreshing the page</Error>
                     ) : (
                         <>
                             {
