@@ -10,6 +10,7 @@ import ExploreJobs from './pages/ExploreJobs/ExploreJobs';
 import SingleJob from './pages/SingleJob/SingleJob';
 import ExploreSellers from './pages/ExploreSellers/ExploreSellers';
 import Chat from './pages/Chat';
+import CreateContract from './pages/CreateContract/CreateContract';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path = '/profile' component={Profile} />
         <Route path = '/account' component={Account} />
         <Route path = '/contracts' component={Contracts} />
+        <Route path = '/contract/:id' component={CreateContract} />
         <Route path = '/job/:id' component={SingleJob} />
         <Route exact path="/" component={Home} />
       </Switch>

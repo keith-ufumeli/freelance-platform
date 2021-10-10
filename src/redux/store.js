@@ -2,6 +2,7 @@ import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import thunk from "redux-thunk";
 import { login_user_Reducer, register_user_Reducer } from "./reducers/authReducers";
 import { get_all_messages_Reducer, get_all_user_chats_Reducer, send_message_Reducer, toggle_chat_Reducer } from "./reducers/chatReducers";
+import { create_contract_Reducer, get_contract_Reducer, get_user_contracts_Reducer, react_to_a_contract_Reducer } from "./reducers/contractsReducer";
 import { create_a_job_Reducer, explore_jobs_Reducer, get_single_job_Reducer, get_user_jobs_Reducer } from "./reducers/jobsReducers";
 import { create_proposal_Reducer } from "./reducers/proposalReducers";
 import { create_a_service_Reducer, edit_a_service_Reducer, explore_services_Reducer } from "./reducers/serviceReducers";
@@ -40,6 +41,12 @@ const reducer = combineReducers({
     send_message: send_message_Reducer,
     get_all_chats: get_all_user_chats_Reducer,
     get_messages: get_all_messages_Reducer,
+
+    //for contracts
+  create_Contract: create_contract_Reducer,
+  single_contract: get_contract_Reducer,
+  all_user_contracts: get_user_contracts_Reducer,
+  react_to_contract: react_to_a_contract_Reducer,
 });
 
 const composeForBrowser =
