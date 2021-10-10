@@ -1,16 +1,12 @@
 import React, { useState } from 'react'
 import GeneralLayout from './GeneralLayout'
-import { SearchIcon, ViewGridAddIcon, ViewListIcon } from "@heroicons/react/outline";
-import { useDispatch, useSelector } from "react-redux";
+import { SearchIcon} from "@heroicons/react/outline";
 import ExploreLeft from '../components/ExploreLeft/ExploreLeft';
 import ExploreRight from '../components/ExploreRight/ExploreRight';
 
 
 
 function ExploreLayout({ children }) {
-    const [grid_view, setGridView] = useState(false);
-    const [skip, setSkip] = useState(0);
-    const dispatch = useDispatch();
     const [search_query, setSearchQuery] = useState('')
 
     const searchItems = () =>{

@@ -1,6 +1,6 @@
 import React, { useState, Fragment } from 'react'
-import { StarIcon as StarRateIcon, HeartIcon as FavoriteIcon } from '@heroicons/react/outline'
-import { HeartIcon as FavoriteBorderIcon, BookmarkIcon, ChatIcon, BadgeCheckIcon } from '@heroicons/react/solid'
+import { StarIcon as StarRateIcon } from '@heroicons/react/outline'
+import { BookmarkIcon, ChatIcon, BadgeCheckIcon } from '@heroicons/react/solid'
 import { Dialog, Transition } from '@headlessui/react'
 import { useHistory } from 'react-router-dom'
 import { Text } from '@chakra-ui/layout'
@@ -8,35 +8,17 @@ import UserAvatar from '../UserAvatar/UserAvatar'
 import UserInfoPanel from '../UserInfoPanel/UserInfoPanel'
 
 function ExploreSellersListItem({ verified, category, price, rating, tags, propic, businessname, id, description, school }) {
-    const [save, setSaved] = useState(false)
     let [isOpen, setIsOpen] = useState(false)
     const history = useHistory()
     const [open, setOpen] = useState(false)
-
-    // console.log(id)
 
     function closeModal() {
         setIsOpen(false)
     }
 
-    function openModal() {
-        setIsOpen(true)
-    }
-
-    const userInfo = localStorage.getItem('userInfo')
-
-    // const chat_with_user = (e) => {
-    //     e.preventDefault()
-    //     if (!userInfo) {
-    //         openModal()
-    //     } else {
-    //         history.push('/chat')
-    //     }
-    // }
-
     return (
-        <span onClick={() => setOpen(true)} className={`bg-white  transition duration-100 transform hover:scale-105 cursor-pointer md:px-0 px-2 py-4 justify-between items-center w-full self-center mb-4 border-b border-gray-200`}>
-            <div className="flex flex-row items-center justify-between mb-8">
+        <span onClick={() => setOpen(true)} className={`bg-white transition duration-100 transform hover:scale-105 cursor-pointer md:px-0 px-2 py-4 justify-between items-center w-full self-center`}>
+            <div className="flex flex-row items-center justify-between mb-4">
                 <span onClick={() => setOpen(true)} className="flex flex-row items-center mr-2 cursor-pointer">
                     <UserAvatar size="sm" name={businessname} picture={propic} />
 
@@ -81,7 +63,7 @@ function ExploreSellersListItem({ verified, category, price, rating, tags, propi
                             realatedcatefory={tag} />
                     ))}
                 </div>
-                <span onClick={() => history.push(`/message/${id}`)} className="flex bg-blue-100 hover:bg-blue-200 rounded-full py-1 px-2 flex-row items-center justify-between cursor-pointer">
+                <span onClick={() => history.push(`/chat/${id}`)} className="flex bg-blue-100 hover:bg-blue-200 rounded-full py-1 px-2 flex-row items-center justify-between cursor-pointer">
                     <p className="text-xs text-blue-800 mr-1">Chat</p>
                     <ChatIcon height={24} width={24} className="text-blue-800" />
                 </span>

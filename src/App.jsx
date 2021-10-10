@@ -20,7 +20,7 @@ function App() {
         <Route path = '/myjobs' component={MyJobs} />
         <Route path = '/explorejobs' component={ExploreJobs} />
         <Route path = '/exploresellers' component={ExploreSellers} />
-        <Route path = '/chat' component={Chat} />
+        <Route path = '/chat/:id' component={Chat} />
         <Route path = '/profile' component={Profile} />
         <Route path = '/account' component={Account} />
         <Route path = '/contracts' component={Contracts} />

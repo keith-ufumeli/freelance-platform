@@ -29,7 +29,7 @@ function ExploreSellers() {
                 <>
                     {
                         services?.services.map((service, index)=>(
-                            <div key={index}>
+                            <div key={index} className="mb-8">
                                 <ExploreSellersListItem
                                     verified={service.user_verified}
                                     description={service.description}

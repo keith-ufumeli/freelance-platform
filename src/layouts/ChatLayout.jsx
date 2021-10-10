@@ -24,7 +24,7 @@ function ChatLayout({ children }) {
             <div className="md:hidden flex">
                 {
                     chat_state === 'open' ? (
-                        <div className="w-full flex-col md:p-4 p-2">
+                        <div className="w-full flex-col">
                             <ChatBody />
                         </div>
                     ) : (
