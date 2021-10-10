@@ -43,7 +43,7 @@ export const explore_jobs_Reducer = (state = { loading: false }, action) => {
 }
 
 //all jobs reducer
-export const get_single_job_Reducer = (state = { loading: false }, action) => {
+export const get_single_job_Reducer = (state = { loading: true }, action) => {
     switch (action.type) {
         case GET_SINGLE_JOB_REQUEST:
             return { loading: true }

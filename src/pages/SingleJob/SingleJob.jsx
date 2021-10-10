@@ -17,6 +17,7 @@ import {
 import { useDropzone } from "react-dropzone";
 import GeneralLayout from "../../layouts/GeneralLayout";
 import { get_single_Job_Action } from "../../redux/actions/jobActions";
+import {create_proposal_Action} from '../../redux/actions/proposalActions'
 import Success from "../../components/Alerts/Success";
 import Error from "../../components/Alerts/Error";
 import BlueButton from "../../components/Buttons/BlueButton";
@@ -24,9 +25,11 @@ import BlueButton from "../../components/Buttons/BlueButton";
 export default function SingleJob() {
     let { id } = useParams();
     const _job = useSelector(state => state.single_job)
-    const { loading, job } = _job
+    const { loading, job, error } = _job
     const _user = useSelector((state) => state.user_login);
     const { userInfo } = _user;
+    const _proposal = useSelector(state => state.create_proposal)
+    const {create_loading, create_message, create_error} = _proposal
     const dispatch = useDispatch();
     const { isOpen, onOpen, onClose } = useDisclosure();
     const btnRef = React.useRef();
@@ -55,6 +58,7 @@ export default function SingleJob() {
         minSize: 0,
         maxSize,
     });
+    
     const isFileTooLarge =
         rejectedFiles?.length > 0 && rejectedFiles[0].size > maxSize;
 
@@ -62,11 +66,20 @@ export default function SingleJob() {
         dispatch(get_single_Job_Action(id));
     }, [dispatch, id]);
 
-    console.log(job, loading)
+    const send_proposal = () => { 
+        dispatch(create_proposal_Action(id, userInfo.token, message, pictures, amount, payment_period))
+    };
 
-    const send_proposal = () => { };
-
-    const save_job = () => { };
+    if(loading){
+        <GeneralLayout>
+            <p className="text-lg text-gray-700 text-center my-8">Loading...</p>
+        </GeneralLayout>
+    }
+    if(error){
+        <GeneralLayout>
+            <p className="text-lg text-gray-700 text-center my-8">Oops! Something went wtong, try refreshng the page</p>
+        </GeneralLayout>
+    }
 
     return (
         <GeneralLayout>
@@ -237,14 +250,14 @@ export default function SingleJob() {
                                             )}
                                         </div>
                                     </DrawerBody>
-                                    {/* {create_message && <Success text={create_message} />}
-                                    {create_error && <Error text={create_error} />} */}
+                                    {create_message && <Success text={create_message} />}
+                                    {create_error && <Error text={create_error} />}
                                     <DrawerFooter>
                                         <div className="flex mr-4">
                                             <BlueButton outline text="Cancel" onClick={onClose} />
                                         </div>
                                         <div className="flex">
-                                            <BlueButton onClick={send_proposal} text="Send proposal" />
+                                            <BlueButton onClick={send_proposal} loading={create_loading} text="Send proposal" />
                                         </div>
                                     
                                     </DrawerFooter>
