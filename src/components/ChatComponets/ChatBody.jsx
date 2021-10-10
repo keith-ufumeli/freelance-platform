@@ -1,28 +1,92 @@
 import { ArrowLeftIcon } from '@heroicons/react/outline'
 import React from 'react'
-import { useDispatch } from 'react-redux'
-import { close_chat_Action } from '../../redux/actions/chatActions'
+import { useDispatch, useSelector } from 'react-redux'
+import { close_chat_Action, send_message_Action } from '../../redux/actions/chatActions'
 import ReceivedMessage from './ReceivedMessage'
 import SentMessage from './SentMessage'
+import { useParams } from 'react-router'
+import { useState } from 'react'
+import { useEffect } from 'react'
+import { apiUrl } from '../../utils/apiUrl'
+import axios from 'axios'
+import { socket } from '../../utils/socket'
+import { Fragment } from 'react'
+
 
 function ChatBody() {
+    const [body, setBody] = useState()
+    const _user = useSelector(state => state.user_login)
+    const { userInfo } = _user //logged in user
+    const { id } = useParams() //user to send message to
+
+    //to gert all messaged
+    const [page_loading, setPageLoading] = useState(false)
+    const [all_messages, setAllMessages] = useState([])
+
+    useEffect(() => {
+        //get user data from async strage
+        setPageLoading(true)
+        axios.get(`${apiUrl}/chat/messages/${id}/${userInfo?.user?._id}`, {
+            headers: {
+                Authorization: userInfo?.token
+            }
+        }).then(res => {
+            setAllMessages(res.data.messages)
+            setPageLoading(false)
+        })
+    }, [])
+
+    useEffect(() => {
+        socket.on('message', data => {
+            setAllMessages((old_messages) => [...old_messages, data])
+            // console.log(data)
+        })
+    }, [socket])
+
+    console.log(all_messages)
+
     const dispatch = useDispatch()
 
-    const close_chat = () =>{
+    const close_chat = () => {
         dispatch(close_chat_Action())
     }
 
+    const sentMessage = () => {
+        dispatch(send_message_Action(id, userInfo?.token, body))
+    }
+
     return (
-        <div className="flex flex-col w-full md:p-4 p-2 md:h-full h-full flex-1">
+        <div className="flex flex-col w-full md:p-4 p-2 md:h-full h-full">
             <div onClick={close_chat} className="md:hidden flex py-4 mb-2 border-b border-gray-300 flex-row items-center">
                 <ArrowLeftIcon height={16} width={16} className='text-gray-700 mr-2' />
                 <p className="text-gray-700 text-sm">Close chat</p>
             </div>
-            <ReceivedMessage />
-            <SentMessage/>
             <div className="flex-1"></div>
-            <div className="input" className="text-gray-700 rounded-full bottom-4 fixed mt-4 lg:w-2/3 md:w-2/5 w-4/5">
-                <input type="text" className="py-3 px-4 w-full rounded-full flex-1 align-bottom outline-none bg-gray-200" placeholder="Type message..." />
+            {
+                all_messages?.map((message, index) => (
+                    <Fragment key={index}>
+                        {
+                            message.sent_by === userInfo?.user?._id ? (
+                                <SentMessage message={message.body} time={message.createdAt} />
+                            ) : (
+                                <ReceivedMessage message={message.body} time={message.createdAt} />
+                            )
+                        }
+                    </Fragment>
+                ))
+            }
+            {/* <ReceivedMessage />
+            <SentMessage /> */}
+            <div className="input" className="text-gray-700 rounded-full bottom-4 w-full mt-4 sticky flex flex-row items-center">
+                <input
+                    type="text"
+                    className="py-3 px-4 w-full rounded-full flex-1 align-bottom outline-none bg-gray-200"
+                    placeholder="Type message..."
+                    onChange={e => setBody(e.target.value)}
+                />
+                <span onClick={sentMessage} className="cursor-pointer">
+                    <p>send</p>
+                </span>
             </div>
         </div>
     )

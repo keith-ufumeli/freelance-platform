@@ -1,9 +1,9 @@
 import React from 'react'
 
-function ReceivedMessage() {
+function ReceivedMessage({message}) {
     return (
-        <div className="text-white bg-gray-200 text-sm p-2 rounded self-start">
-            <p className="text-gray-700">iam a message</p>
+        <div className="text-white bg-gray-200 mb-1 text-sm p-2 rounded self-start">
+            <p className="text-gray-700">{message}</p>
         </div>
     )
 }

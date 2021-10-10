@@ -1,7 +1,7 @@
 import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import thunk from "redux-thunk";
 import { login_user_Reducer, register_user_Reducer } from "./reducers/authReducers";
-import { toggle_chat_Reducer } from "./reducers/chatReducers";
+import { get_all_messages_Reducer, get_all_user_chats_Reducer, send_message_Reducer, toggle_chat_Reducer } from "./reducers/chatReducers";
 import { create_a_job_Reducer, explore_jobs_Reducer, get_single_job_Reducer, get_user_jobs_Reducer } from "./reducers/jobsReducers";
 import { create_proposal_Reducer } from "./reducers/proposalReducers";
 import { create_a_service_Reducer, edit_a_service_Reducer, explore_services_Reducer } from "./reducers/serviceReducers";
@@ -33,7 +33,13 @@ const reducer = combineReducers({
     create_proposal : create_proposal_Reducer,
 
     // for chat
-    toggle_chat : toggle_chat_Reducer
+    toggle_chat : toggle_chat_Reducer,
+
+    //for messages
+    //for messages
+    send_message: send_message_Reducer,
+    get_all_chats: get_all_user_chats_Reducer,
+    get_messages: get_all_messages_Reducer,
 });
 
 const composeForBrowser =

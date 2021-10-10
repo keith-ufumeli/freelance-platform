@@ -7,7 +7,7 @@ import { Text } from '@chakra-ui/layout'
 import UserAvatar from '../UserAvatar/UserAvatar'
 import UserInfoPanel from '../UserInfoPanel/UserInfoPanel'
 
-function ExploreSellersListItem({ verified, category, price, rating, tags, propic, businessname, id, description, school }) {
+function ExploreSellersListItem({ verified, category, price, rating, tags, propic, businessname, id, description, school, owner }) {
     let [isOpen, setIsOpen] = useState(false)
     const history = useHistory()
     const [open, setOpen] = useState(false)
@@ -37,6 +37,7 @@ function ExploreSellersListItem({ verified, category, price, rating, tags, propi
                             verified={verified}
                             open={open} setOpen={setOpen}
                             school={school}
+                            owner={owner}
                         />
                     </>
                 </span>
@@ -63,7 +64,7 @@ function ExploreSellersListItem({ verified, category, price, rating, tags, propi
                             realatedcatefory={tag} />
                     ))}
                 </div>
-                <span onClick={() => history.push(`/chat/${id}`)} className="flex bg-blue-100 hover:bg-blue-200 rounded-full py-1 px-2 flex-row items-center justify-between cursor-pointer">
+                <span onClick={() => history.push(`/chat/${owner}`)} className="flex bg-blue-100 hover:bg-blue-200 rounded-full py-1 px-2 flex-row items-center justify-between cursor-pointer">
                     <p className="text-xs text-blue-800 mr-1">Chat</p>
                     <ChatIcon height={24} width={24} className="text-blue-800" />
                 </span>
