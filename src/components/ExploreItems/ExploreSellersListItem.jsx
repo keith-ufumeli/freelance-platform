@@ -63,22 +63,12 @@ function ExploreSellersListItem({ verified, category, price, rating, tags, propi
                         <StarRateIcon width={15} height={15} className="text-yellow-500" />
                         <p className="text-xs dark:bg-gray-700 rounded px-1 dark:text-gray-400" >{rating}</p>
                     </div>
-
-                    {!save ? (
-                        <span onClick={() => setSaved(true)} className="saved flex flex-row items-center text-gray-600">
-                            <FavoriteBorderIcon width={20} height={20} className="text-pink-600" />
-                            <p className="text-xs text-pink-600">Saved</p>
-                        </span>) : (
-                        <span onClick={() => setSaved(false)} className="saved flex flex-row items-center text-gray-600">
-                            <FavoriteIcon width={20} height={20} className="text-gray-600" />
-                            <p className="text-xs">Save</p>
-                        </span>)}
                 </div>
             </div>
             <div className="price mb-2">
                 <p className="text-sm text-gray-700 font-semibold flex flex-row flex-wrap">Price range - <span className="font-normal">${price}/hr - </span>
-                <span className="flex flex-row items-center">
-                    <BookmarkIcon height={12} width={12} />{category}</span>
+                    <span className="flex flex-row items-center">
+                        <BookmarkIcon height={12} width={12} />{category}</span>
                 </p>
             </div>
             <div className="price mb-4 overflow-hidden">
