@@ -52,3 +52,7 @@ export const login_user_Action = (email, password) => (dispatch) => {
         })
     })
 }
+
+export const logout_user = () =>(dispatch) =>{
+    localStorage.removeItem('userInfo')
+}

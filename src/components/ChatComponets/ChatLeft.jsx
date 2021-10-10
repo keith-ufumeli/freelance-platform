@@ -33,6 +33,7 @@ function ChatLeft() {
                             message={chat.last_message}
                             username={chat.message_username}
                             not_sent_by_you={chat.sent_by_you}
+                            room_id={chat.room_id}
                         />
                     </Fragment>
                 ))

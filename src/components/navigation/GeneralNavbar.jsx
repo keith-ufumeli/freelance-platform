@@ -4,8 +4,9 @@ import { MenuAlt2Icon, XIcon } from '@heroicons/react/outline'
 import { Link } from 'react-router-dom'
 import logo from '../../assets/Daypitch_logo.svg'
 import {nav_options} from '../../utils/nav_options'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import UserAvatar from '../UserAvatar/UserAvatar'
+import { logout_user } from '../../redux/actions/authActions'
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -15,8 +16,11 @@ function classNames(...classes) {
 function GeneralNavbar() {
     const userSignin = useSelector(state=> state.user_login)
     const {userInfo} = userSignin
+    const dispatch = useDispatch()
 
-    const logout = () =>{}
+    const logout = () =>{
+        dispatch(logout_user())
+    }
 
     return (
         <Disclosure as="nav" className={`bg-white transition duration-500 ease-in-out shadow-sm`}>

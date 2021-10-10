@@ -1,9 +1,14 @@
 import React from 'react'
+import GeneralNavbar from '../components/navigation/GeneralNavbar'
+import GeneralLayout from './GeneralLayout'
 
-function ChatLayout() {
+function ChatLayout({children}) {
     return (
         <div>
-            iam a layout 
+            <GeneralNavbar/>
+            <div className="body">
+                {children}
+            </div>
         </div>
     )
 }

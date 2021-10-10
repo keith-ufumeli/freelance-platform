@@ -43,8 +43,6 @@ function ChatBody() {
         })
     }, [socket])
 
-    console.log(all_messages)
-
     const dispatch = useDispatch()
 
     const close_chat = () => {
@@ -75,9 +73,7 @@ function ChatBody() {
                     </Fragment>
                 ))
             }
-            {/* <ReceivedMessage />
-            <SentMessage /> */}
-            <div className="input" className="text-gray-700 rounded-full bottom-4 w-full mt-4 sticky flex flex-row items-center">
+            <div className="input" className="text-gray-700 rounded-full bottom-4 w-full mt-4 flex flex-row items-center">
                 <input
                     type="text"
                     className="py-3 px-4 w-full rounded-full flex-1 align-bottom outline-none bg-gray-200"
