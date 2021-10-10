@@ -3,7 +3,7 @@ import thunk from "redux-thunk";
 import { login_user_Reducer, register_user_Reducer } from "./reducers/authReducers";
 import { create_a_job_Reducer, explore_jobs_Reducer, get_single_job_Reducer, get_user_jobs_Reducer } from "./reducers/jobsReducers";
 import { create_proposal_Reducer } from "./reducers/proposalReducers";
-import { create_a_service_Reducer, edit_a_service_Reducer } from "./reducers/serviceReducers";
+import { create_a_service_Reducer, edit_a_service_Reducer, explore_services_Reducer } from "./reducers/serviceReducers";
 
 const initialState = {
   user_login: {
@@ -26,6 +26,7 @@ const reducer = combineReducers({
     //for services
     create_service: create_a_service_Reducer,
     edit_service: edit_a_service_Reducer,
+    explore_services: explore_services_Reducer,
 
     //for proposals
     create_proposal : create_proposal_Reducer

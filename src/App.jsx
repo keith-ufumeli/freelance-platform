@@ -8,6 +8,7 @@ import Profile from './pages/Profile/Profile';
 import Account from './pages/Account/Account';
 import ExploreJobs from './pages/ExploreJobs/ExploreJobs';
 import SingleJob from './pages/SingleJob/SingleJob';
+import ExploreSellers from './pages/ExploreSellers/ExploreSellers';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path = '/login' component={Login} />
         <Route path = '/myjobs' component={MyJobs} />
         <Route path = '/explorejobs' component={ExploreJobs} />
+        <Route path = '/exploresellers' component={ExploreSellers} />
         <Route path = '/profile' component={Profile} />
         <Route path = '/account' component={Account} />
         <Route path = '/contracts' component={Contracts} />
