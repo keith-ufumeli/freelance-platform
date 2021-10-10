@@ -27,12 +27,12 @@ function Home() {
                     </div>
                     <div className="md:my-auto my-auto pt-16 w-full">
                         <div className="lg:col-span-1 md:col-span-2 col-span-1 pt-8 flex flex-col md:items-start items-center w-full">
-                            <p className="md:text-7xl text-gray-900  md:dark:text-gray-100 dark:text-geay-100 text-4xl mx-auto w-full mb-4 font-semibold z-40">
+                            <h1 className="md:text-7xl text-gray-900  md:dark:text-gray-100 dark:text-geay-100 text-4xl mx-auto w-full mb-4 font-semibold z-40">
                                 Find the perfect location for your professionals
-                            </p>
-                            <p className="md:w-full text-gray-800  md:dark:text-gray-100 dark:text-geay-100 md:mb-16 mb-8 w-full dark:text-gray-400 z-40">
+                            </h1>
+                            <h2 className="md:w-full text-gray-800  md:dark:text-gray-100 dark:text-geay-100 md:mb-16 mb-8 w-full dark:text-gray-400 z-40">
                                 View Professionals in your local area for free
-                            </p>
+                            </h2>
 
                             {/* search component */}
                             <div className="w-full self-center flex mb-2 z-40">
@@ -150,9 +150,9 @@ function Home() {
 
                 {/* // category items */}
                 <div className="flex flex-col items-center lg:px-32 md:px-16 px-4 pt-8 z-20 pb-36 w-full bg-gray-50">
-                    <p className="text-gray-700 text-4xl dark:text-gray-200 text-center font-semibold mb-24 md:px-32 px-8 pt-12">
+                    <h5 className="text-gray-700 text-4xl dark:text-gray-200 text-center font-semibold mb-24 md:px-32 px-8 pt-12">
                         Easily prototype and communicate your vision
-                    </p>
+                    </h5>
                     <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 lg:gap-24 md:gap-16 gap-8 items-center">
                         <HomeViewComponent
                             className="col-span-1"

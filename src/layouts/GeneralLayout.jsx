@@ -1,4 +1,5 @@
 import React from 'react'
+import Footer from '../components/navigation/Footer'
 import GeneralNavbar from '../components/navigation/GeneralNavbar'
 
 function GeneralLayout({children}) {
@@ -11,7 +12,7 @@ function GeneralLayout({children}) {
                 {children}
             </div>
             <div className="footer">
-                footer
+                <Footer/>
             </div>
         </div>
     )
