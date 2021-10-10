@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
-import ExploreJobListItem from '../../components/ExploreItems/ExploreJobList'
+import ExploreJobListItem from '../../components/ExploreItems/ExploreJobListItem'
 import ExploreLayout from '../../layouts/ExploreLayout'
 import { explore_jobs_Action } from '../../redux/actions/jobActions'
 
