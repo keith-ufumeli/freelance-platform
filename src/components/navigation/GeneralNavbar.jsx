@@ -7,7 +7,9 @@ import { nav_options } from '../../utils/nav_options'
 import { useDispatch, useSelector } from 'react-redux'
 import UserAvatar from '../UserAvatar/UserAvatar'
 import { logout_user } from '../../redux/actions/authActions'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useHistory } from 'react-router-dom'
+import { useEffect } from 'react'
+import { socket } from '../../utils/socket'
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -19,10 +21,22 @@ function GeneralNavbar() {
     const { userInfo } = userSignin
     const dispatch = useDispatch()
     const location = useLocation();
+    const history = useHistory()
 
     const logout = () => {
         dispatch(logout_user())
+        window.location.reload()
+        setTimeout(() => {
+            history.push('/exploresellers')
+        }, 500);
     }
+
+    useEffect(()=>{
+        socket.on('logout-success', data=>{
+            console.info(data)
+            userInfo = null
+        })
+    },[socket])
 
     return (
         <Disclosure as="nav" className={`bg-white transition duration-500 ease-in-out shadow-sm`}>

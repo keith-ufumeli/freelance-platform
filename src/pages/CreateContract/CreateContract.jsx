@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { Switch } from "@headlessui/react";
 import GeneralLayout from '../../layouts/GeneralLayout'
-import { Button, Select } from "@chakra-ui/react";
+import { Select } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { create_a_contract } from "../../redux/actions/contractActions";
 import BlueButton from "../../components/Buttons/BlueButton";
@@ -21,6 +21,7 @@ function CreateContract() {
     const [lastname, setLastname] = useState("");
     const [company, setCompany] = useState("");
     const [email, setEmail] = useState("");
+    // eslint-disable-next-line
     const [country_code, setCountryCode] = useState("");
     const [details, setDetails] = useState("");
     const [phone_number, setPhonenumber] = useState();

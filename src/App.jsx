@@ -11,6 +11,7 @@ import SingleJob from './pages/SingleJob/SingleJob';
 import ExploreSellers from './pages/ExploreSellers/ExploreSellers';
 import Chat from './pages/Chat';
 import CreateContract from './pages/CreateContract/CreateContract';
+import PrivateRoute from './hooks/PrivateRoute';
 
 function App() {
   return (
@@ -21,9 +22,9 @@ function App() {
         <Route path = '/myjobs' component={MyJobs} />
         <Route path = '/explorejobs' component={ExploreJobs} />
         <Route path = '/exploresellers' component={ExploreSellers} />
-        <Route path = '/chat/:id' component={Chat} />
-        <Route path = '/profile' component={Profile} />
-        <Route path = '/account' component={Account} />
+        <PrivateRoute path = '/chat/:id' component={Chat} />
+        <PrivateRoute path = '/profile' component={Profile} />
+        <PrivateRoute path = '/account' component={Account} />
         <Route path = '/contracts' component={Contracts} />
         <Route path = '/contract/:id' component={CreateContract} />
         <Route path = '/job/:id' component={SingleJob} />
