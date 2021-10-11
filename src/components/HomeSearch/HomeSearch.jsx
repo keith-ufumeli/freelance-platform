@@ -3,6 +3,7 @@ import { SearchIcon } from "@heroicons/react/solid";
 import { useHistory } from "react-router-dom";
 import { Input } from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
+import { set_search_query_Action } from "../../redux/actions/SearchAction";
 
 function HomeSearch() {
   const history = useHistory();
@@ -11,11 +12,11 @@ function HomeSearch() {
   const [selected, setSelected] = useState("jobs");
   const dispatch = useDispatch()
 
-  const searchItems = (e) => {
-    // dispatch(search_item_Action(category));
-    // selected === "jobs"
-    //   ? history.push("/explorejobs")
-    //   : history.push("/explore");
+  const searchItems = () => {
+    dispatch(set_search_query_Action(category));
+    selected === "jobs"
+      ? history.push("/explorejobs")
+      : history.push("/exploresellers");
   };
 
   return (
