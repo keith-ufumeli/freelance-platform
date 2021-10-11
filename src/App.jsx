@@ -12,6 +12,9 @@ import ExploreSellers from './pages/ExploreSellers/ExploreSellers';
 import Chat from './pages/Chat';
 import CreateContract from './pages/CreateContract/CreateContract';
 import PrivateRoute from './hooks/PrivateRoute';
+import HowItWorks from './pages/HowItWorks/HowItWorks';
+import Contact from './pages/Contact/Contact';
+import NotFound from './pages/notfound/NotFound'
 
 function App() {
   return (
@@ -26,9 +29,12 @@ function App() {
         <PrivateRoute path = '/profile' component={Profile} />
         <PrivateRoute path = '/account' component={Account} />
         <Route path = '/contracts' component={Contracts} />
+        <Route path = '/howitworks' component={HowItWorks} />
+        <Route path = '/contact' component={Contact} />
         <Route path = '/contract/:id' component={CreateContract} />
         <Route path = '/job/:id' component={SingleJob} />
         <Route exact path="/" component={Home} />
+        <Route path="*" component={NotFound} />
       </Switch>
     </BrowserRouter>
   );
