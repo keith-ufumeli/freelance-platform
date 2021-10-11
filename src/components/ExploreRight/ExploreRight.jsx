@@ -1,10 +1,12 @@
-import { Text } from '@chakra-ui/react'
 import { CalendarIcon, ChatAltIcon } from '@heroicons/react/outline'
 import { BadgeCheckIcon } from '@heroicons/react/solid'
+import axios from 'axios'
 import React from 'react'
+import { useEffect } from 'react'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
-import { Link, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
+import { apiUrl } from '../../utils/apiUrl'
 import UserAvatar from '../UserAvatar/UserAvatar'
 
 function ExploreRight() {
@@ -13,6 +15,16 @@ function ExploreRight() {
     const history = useHistory()
     const [user, setUser] = useState()
     const [user_loading, setUserLoading] = useState(false)
+
+    useEffect(()=>{
+        setUserLoading(true)
+        axios.get(`${apiUrl}/user/single/${userInfo?.user?._id}`).then(res=>{
+            setUser(res.data.user)
+            setUserLoading(false)
+        }).catch(()=>{
+            setUserLoading(false)
+        })
+    },[])
 
 
     return (
@@ -71,7 +83,7 @@ function ExploreRight() {
                                     </div>
                                     <div className="flex items-center space-x-2">
                                         <ChatAltIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
-                                        <span className="text-gray-900 text-sm font-medium">{user?.total_contracts} contracts</span>
+                                        <span className="text-gray-900 text-sm font-medium">{user?.contracts?.length} contracts</span>
                                     </div>
                                     <div className="flex items-center space-x-2">
                                         <CalendarIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
@@ -79,54 +91,6 @@ function ExploreRight() {
                                             Created on - <time dateTime="2020-12-02">{Date(user?.createdAt * 1000).slice(0, 15)}</time>
                                         </span>
                                     </div>
-                                </div>
-                                <div className="mt-6 border-t border-gray-200 py-6 space-y-8">
-                                    <div>
-                                        <h2 className="text-sm font-medium text-gray-500">Contractors</h2>
-                                        <ul className="mt-3 space-y-3">
-                                            {
-                                                user?.current_contracts < 1 ? (<Text className="text-gray-700 font-semibold">no current contracts at the moment</Text>) : (<li className="flex justify-start">
-                                                    <Link to='/jobs' className="flex items-center space-x-3">
-                                                        <div className="flex-shrink-0">
-                                                            <img
-                                                                className="h-5 w-5 rounded-full"
-                                                                src="https://images.unsplash.com/photo-1520785643438-5bf77931f493?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80"
-                                                                alt=""
-                                                            />
-                                                        </div>
-                                                        {/* <div className="text-sm font-medium text-gray-900">Eduardo Benz</div> */}
-                                                    </Link>
-                                                </li>)
-                                            }
-                                        </ul>
-                                    </div>
-                                    {/* <div>
-                                        <h2 className="text-sm font-medium text-gray-500">Tags</h2>
-                                        <ul className="mt-2 leading-8">
-                                            <li className="inline">
-                                                <a
-                                                    href="/"
-                                                    className="relative inline-flex items-center rounded-full border border-gray-300 px-3 py-0.5"
-                                                >
-                                                    <div className="absolute flex-shrink-0 flex items-center justify-center">
-                                                        <span className="h-1.5 w-1.5 rounded-full bg-rose-500" aria-hidden="true" />
-                                                    </div>
-                                                    <div className="ml-3.5 text-sm font-medium text-gray-900">Bug</div>
-                                                </a>{' '}
-                                            </li>
-                                            <li className="inline">
-                                                <a
-                                                    href="/"
-                                                    className="relative inline-flex items-center rounded-full border border-gray-300 px-3 py-0.5"
-                                                >
-                                                    <div className="absolute flex-shrink-0 flex items-center justify-center">
-                                                        <span className="h-1.5 w-1.5 rounded-full bg-indigo-500" aria-hidden="true" />
-                                                    </div>
-                                                    <div className="ml-3.5 text-sm font-medium text-gray-900">Accessibility</div>
-                                                </a>{' '}
-                                            </li>
-                                        </ul>
-                                    </div> */}
                                 </div>
                             </>
                         )
