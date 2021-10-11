@@ -4,9 +4,9 @@ import { Fragment, useState } from 'react'
 import { Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/solid'
 import { useDispatch, useSelector } from 'react-redux'
-// import { get_user_contracts_Action } from '../../redux/actions/contractActions'
 import { Text } from '@chakra-ui/layout'
 import { useHistory } from 'react-router'
+import { get_user_contracts_Action } from '../../redux/actions/contractActions'
 
 function NavbarNotification() {
   const [show, setShow] = useState(false)
@@ -18,9 +18,11 @@ function NavbarNotification() {
   const { loading, contracts } = user_contracts
   const history = useHistory()
 
-  // useEffect(() => {
-  //   dispatch(get_user_contracts_Action(userInfo?.user?.uid))
-  // }, [dispatch, userInfo?.user?.uid])
+  useEffect(() => {
+    dispatch(get_user_contracts_Action(userInfo?.token, 'pending'))
+  }, [dispatch, userInfo?.token])
+
+  console.log(contracts)
 
   if (loading) {
     return (
