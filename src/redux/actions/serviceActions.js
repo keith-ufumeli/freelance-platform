@@ -37,7 +37,7 @@ export const edit_a_service_Action = (body_obj, id, token) => (dispatch) => {
     })
     axios.patch(`${apiUrl}/service/edit/${id}`, {
         ...body_obj
-    },{
+    }, {
         headers: {
             Authorization: token
         }
@@ -57,11 +57,14 @@ export const edit_a_service_Action = (body_obj, id, token) => (dispatch) => {
 }
 
 //EDIT SERVICE
-export const explore_serviceS_Action = () => (dispatch) => {
+export const explore_serviceS_Action = (query) => (dispatch) => {
     dispatch({
         type: EXPLORE_SERVICES_REQUEST,
+        payload: query
     })
-    axios.get(`${apiUrl}/service/all`).then(res => {
+    axios.post(`${apiUrl}/service/all`, {
+        search: query
+    }).then(res => {
         dispatch({
             type: EXPLORE_SERVICES_SUCCESS,
             payload: res.data

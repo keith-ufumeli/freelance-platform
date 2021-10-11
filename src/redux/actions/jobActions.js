@@ -3,11 +3,13 @@ import { apiUrl } from "../../utils/apiUrl"
 import { CREATE_JOB_FAIL, CREATE_JOB_REQUEST, CREATE_JOB_SUCCESS, EXPLORE_JOBS_FAIL, EXPLORE_JOBS_REQUEST, EXPLORE_JOBS_SUCCESS, GET_SINGLE_JOB_FAIL, GET_SINGLE_JOB_REQUEST, GET_SINGLE_JOB_SUCCESS, GET_USER_JOBS_FAIL, GET_USER_JOBS_REQUEST, GET_USER_JOBS_SUCCESS, SAVE_SINGLE_JOB_REQUEST } from "../constants/jobConstants"
 
 //EXPLORE JOBS ACTION
-export const explore_jobs_Action = () => (dispatch) => {
+export const explore_jobs_Action = (query) => (dispatch) => {
     dispatch({
         type: EXPLORE_JOBS_REQUEST
     })
-    axios.get(`${apiUrl}/job/all`).then(res => {
+    axios.post(`${apiUrl}/job/all`,{
+        search: query
+    }).then(res => {
         dispatch({
             type: EXPLORE_JOBS_SUCCESS,
             payload: res.data

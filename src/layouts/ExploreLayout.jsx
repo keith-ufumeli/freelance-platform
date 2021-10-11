@@ -3,14 +3,18 @@ import GeneralLayout from './GeneralLayout'
 import { SearchIcon} from "@heroicons/react/outline";
 import ExploreLeft from '../components/ExploreLeft/ExploreLeft';
 import ExploreRight from '../components/ExploreRight/ExploreRight';
+import { useDispatch } from 'react-redux';
+import { set_search_query_Action } from '../redux/actions/SearchAction';
 
 
 
 function ExploreLayout({ children }) {
     const [search_query, setSearchQuery] = useState('')
+    const dispatch = useDispatch()
 
-    const searchItems = () =>{
-        console.log(search_query)
+    const searchItems = (e) =>{
+        e.preventDefault()
+        dispatch(set_search_query_Action(search_query))
     }
 
     return (

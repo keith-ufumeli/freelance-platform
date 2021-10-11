@@ -10,10 +10,12 @@ function ExploreJobs() {
     const _jobs = useSelector(state => state.all_jobs)
     const { loading, error, jobs } = _jobs
     const dispatch = useDispatch()
+    const _search = useSelector(state => state.search_query)
+    const { query } = _search
 
     useEffect(() => {
-        dispatch(explore_jobs_Action())
-    }, [dispatch])
+        dispatch(explore_jobs_Action(query))
+    }, [dispatch, query])
 
     return (
         <ExploreLayout>
@@ -26,19 +28,27 @@ function ExploreJobs() {
                     ) : (
                         <>
                             {
-                                jobs?.jobs?.map((job, index) => (
-                                    <div key={index}>
-                                        <ExploreJobListItem
-                                            time={job.createdAt}
-                                            description={job.description}
-                                            amount={job.amount_to_pay}
-                                            title={job.title}
-                                            name={'tatendaZw'}
-                                            createdBy={job.createdBy}
-                                            id={job._id}
-                                        />
-                                    </div>
-                                ))
+                                jobs?.jobs?.length >= 1 ? (
+                                    <>
+                                        {
+                                            jobs?.jobs?.map((job, index) => (
+                                                <div key={index}>
+                                                    <ExploreJobListItem
+                                                        time={job.createdAt}
+                                                        description={job.description}
+                                                        amount={job.amount_to_pay}
+                                                        title={job.title}
+                                                        name={'tatendaZw'}
+                                                        createdBy={job.createdBy}
+                                                        id={job._id}
+                                                    />
+                                                </div>
+                                            ))
+                                        }
+                                    </>
+                                ) : (
+                                    <p className="text-center text-gray-700 text-lg">There are not jobs to show</p>
+                                )
                             }
                         </>
                     )

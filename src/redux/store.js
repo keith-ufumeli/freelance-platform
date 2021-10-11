@@ -5,6 +5,7 @@ import { get_all_messages_Reducer, get_all_user_chats_Reducer, send_message_Redu
 import { create_contract_Reducer, get_contract_Reducer, get_user_contracts_Reducer, react_to_a_contract_Reducer } from "./reducers/contractsReducer";
 import { create_a_job_Reducer, explore_jobs_Reducer, get_single_job_Reducer, get_user_jobs_Reducer } from "./reducers/jobsReducers";
 import { create_proposal_Reducer } from "./reducers/proposalReducers";
+import { set_search_query_Reducer } from "./reducers/searchReducers";
 import { create_a_service_Reducer, edit_a_service_Reducer, explore_services_Reducer } from "./reducers/serviceReducers";
 
 const initialState = {
@@ -47,6 +48,8 @@ const reducer = combineReducers({
   single_contract: get_contract_Reducer,
   all_user_contracts: get_user_contracts_Reducer,
   react_to_contract: react_to_a_contract_Reducer,
+
+  search_query: set_search_query_Reducer
 });
 
 const composeForBrowser =
