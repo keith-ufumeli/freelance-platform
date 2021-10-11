@@ -1,6 +1,6 @@
 import { Disclosure } from '@headlessui/react'
 import { ChevronDownIcon, PaperClipIcon } from '@heroicons/react/outline'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Error from '../../components/Alerts/Error'
 import ContractsLayout from '../../layouts/ContractsLayout'
@@ -12,7 +12,6 @@ function MyJobs() {
     const _jobs = useSelector(state => state.user_jobs)
     const { loading, jobs, error } = _jobs
     const dispatch = useDispatch()
-    // const [new_jobs, setNewJobs ] = useState()
 
     useEffect(() => {
         dispatch(get_user_jobs_Action(userInfo?.user?._id))

@@ -36,12 +36,7 @@ export default function ExploreJobListItem({ title, description, amount, name, i
                     <HStack noOfLines={1} spacing="20px" className="col-span-4">
                         <HStack spacing={'20px'}>
                             <Text noOfLines={1} className="p-1 text-xs text-gray-700 border border-gray-200 rounded">
-                                UX/UI
-                            </Text><Text noOfLines={1} className="p-1 text-xs text-gray-700 border border-gray-200 rounded">
-                                REACT
-                            </Text>
-                            <Text noOfLines={1} className="p-1 text-xs text-gray-700 border border-gray-200 rounded">
-                                WEBSITE
+                                NOT FEATURED
                             </Text>
                         </HStack>
                     </HStack>
