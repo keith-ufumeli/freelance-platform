@@ -15,6 +15,7 @@ import PrivateRoute from './hooks/PrivateRoute';
 import HowItWorks from './pages/HowItWorks/HowItWorks';
 import Contact from './pages/Contact/Contact';
 import NotFound from './pages/notfound/NotFound'
+import Upgrade from './pages/upgrade/Upgrade';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path = '/howitworks' component={HowItWorks} />
         <Route path = '/contact' component={Contact} />
         <Route path = '/job/:id' component={SingleJob} />
+        <Route path = '/upgrade' component={Upgrade} />
         <PrivateRoute path = '/chat/:id' component={Chat} />
         <PrivateRoute path = '/profile' component={Profile} />
         <PrivateRoute path = '/account' component={Account} />

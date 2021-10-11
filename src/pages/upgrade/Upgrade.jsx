@@ -1,16 +1,14 @@
 import React from 'react'
-import HomeLayout from '../../layouts/HomeLayout/HomeLayout'
-import InfoIcon from '@material-ui/icons/Info';
-import upload from '../../images/uploadI.svg'
-import CreditCardIcon from '@material-ui/icons/CreditCard';
-import premium from '../../images/premium.svg'
-import text from '../../images/textM.svg'
-import {LockClosedIcon} from '@heroicons/react/outline'
+import upload from '../../assets/uploadI.svg'
+import premium from '../../assets/premium.svg'
+import text from '../../assets/textM.svg'
+import {LockClosedIcon, CreditCardIcon, InformationCircleIcon} from '@heroicons/react/outline'
 import { Input } from '@chakra-ui/react';
+import GeneralLayout from '../../layouts/GeneralLayout'
 
 function Upgrade() {
     return (
-        <HomeLayout>
+        <GeneralLayout>
             <div className="min-h-screen flex flex-row items-center">
             <div className="grid md:grid-cols-2 grid-cols-1 px-8">
                 <div className="left md:p-8 p-4 col-span-1">
@@ -46,7 +44,7 @@ function Upgrade() {
                             </span>
                             <p className="flex-row text-gray-600 dark:text-white mt-1 flex">
                                 <p className="text-blue-900 dark:text-blue-700 text-sm font-semibold">Your PRO plan</p>
-                                <InfoIcon fontSize="small" />
+                                <InformationCircleIcon height={16} width={16} />
                             </p>
                         </span>
                         <div className="border-b my-4 border-gray-300 dark:border-gray-500"></div>
@@ -56,7 +54,7 @@ function Upgrade() {
                                 <input 
                                     type="text" 
                                     className="w-full dark:bg-gray-700 border-none outline-none" placeholder="Card Number" />
-                                <CreditCardIcon />
+                                <CreditCardIcon height={16} width={16} />
                             </div>
                             <div className="two grid md:grid-cols-2 grid-cols-1 gap-2 items-center">
                                 <Input
@@ -78,7 +76,7 @@ function Upgrade() {
                 </div>
             </div>
             </div>
-        </HomeLayout>
+        </GeneralLayout>
     )
 }
 
