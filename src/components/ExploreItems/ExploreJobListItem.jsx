@@ -6,6 +6,7 @@ import { HStack } from '@chakra-ui/react'
 import moment from 'moment'
 
 export default function ExploreJobListItem({ title, description, amount, name, id, time }) {
+    console.log(moment(time).diff(moment(time), 'days'))
     const history = useHistory()
     return (
         <span onClick={() => history.push(`/job/${id}`)} className={`bg-white  transition duration-100 transform hover:scale-105 cursor-pointer md:px-0 px-2 py-4 justify-between items-center w-full self-center border-b border-gray-200 mb-4`}>
@@ -24,7 +25,8 @@ export default function ExploreJobListItem({ title, description, amount, name, i
                     <div className="text-gray-700 flex flex-row items-center">
                         <Text noOfLines={1} className="mr-4 font-semibold text-sm">{title}</Text>
                         <div className="flex">
-                            <p className="bg-yellow-100 text-yellow-700 p-1 text-xs rounded flex uppercase">NEW</p>
+                            {moment(time).diff(moment(time), 'days') < 5 ? (<p className="bg-yellow-100 text-yellow-700 p-1 text-xs rounded flex uppercase">NEW</p>): null}
+                            
                         </div>
                     </div>
                    
