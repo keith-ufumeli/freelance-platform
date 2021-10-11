@@ -15,34 +15,34 @@ const initialState = {
   },
 };
 const reducer = combineReducers({
-    //this is where all the reducers go
-    user_register: register_user_Reducer,
-    user_login: login_user_Reducer,
+  //this is where all the reducers go
+  user_register: register_user_Reducer,
+  user_login: login_user_Reducer,
 
-    //for jobs
-    user_jobs: get_user_jobs_Reducer,
-    create_job: create_a_job_Reducer,
-    all_jobs: explore_jobs_Reducer,
-    single_job: get_single_job_Reducer,
+  //for jobs
+  user_jobs: get_user_jobs_Reducer,
+  create_job: create_a_job_Reducer,
+  all_jobs: explore_jobs_Reducer,
+  single_job: get_single_job_Reducer,
 
-    //for services
-    create_service: create_a_service_Reducer,
-    edit_service: edit_a_service_Reducer,
-    explore_services: explore_services_Reducer,
+  //for services
+  create_service: create_a_service_Reducer,
+  edit_service: edit_a_service_Reducer,
+  explore_services: explore_services_Reducer,
 
-    //for proposals
-    create_proposal : create_proposal_Reducer,
+  //for proposals
+  create_proposal: create_proposal_Reducer,
 
-    // for chat
-    toggle_chat : toggle_chat_Reducer,
+  // for chat
+  toggle_chat: toggle_chat_Reducer,
 
-    //for messages
-    //for messages
-    send_message: send_message_Reducer,
-    get_all_chats: get_all_user_chats_Reducer,
-    get_messages: get_all_messages_Reducer,
+  //for messages
+  //for messages
+  send_message: send_message_Reducer,
+  get_all_chats: get_all_user_chats_Reducer,
+  get_messages: get_all_messages_Reducer,
 
-    //for contracts
+  //for contracts
   create_Contract: create_contract_Reducer,
   single_contract: get_contract_Reducer,
   all_user_contracts: get_user_contracts_Reducer,

@@ -5,6 +5,9 @@ import GeneralLayout from '../../layouts/GeneralLayout'
 import { Button, Select } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { create_a_contract } from "../../redux/actions/contractActions";
+import BlueButton from "../../components/Buttons/BlueButton";
+import Error from "../../components/Alerts/Error";
+import Success from "../../components/Alerts/Success";
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
@@ -29,9 +32,8 @@ function CreateContract() {
     const { userInfo } = _user
     const [contract_type, setContractType] = useState("");
     const [payment_period, setPaymentPeriod] = useState('');
-
     const contract_state = useSelector((state) => state.create_Contract);
-    const { loading } = contract_state;
+    const { loading, error, message } = contract_state;
     const dispatch = useDispatch();
 
     const create_contract = () => {
@@ -39,7 +41,7 @@ function CreateContract() {
             setErr("please enter all fields");
         } else {
             const msg_obj = {
-                sent_by: userInfo?.user.uid,
+                createdBy: userInfo?.user.uid,
                 sent_to: id,
                 firstname,
                 lastname,
@@ -49,14 +51,16 @@ function CreateContract() {
                 phone_number,
                 amount,
                 country_code,
-                status: "inactive",
                 period_of_contract: period,
                 payment_period,
                 title,
                 contract_type
             };
             if (agreed) {
-                dispatch(create_a_contract(msg_obj, id));
+                dispatch(create_a_contract(msg_obj, id, userInfo?.token));
+            }
+            if(!agreed){
+                setErr('You have to agree for the contract to proceed')
             }
         }
     };
@@ -362,15 +366,10 @@ function CreateContract() {
                                 ) : null}
                             </div>
                             <div className="sm:col-span-2">
-                                <Button
-                                    isLoading={loading}
-                                    onClick={create_contract}
-                                    type="submit"
-                                    colorScheme="blue"
-                                    className="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-900 hover:bg-blue-800 focus:outline-none"
-                                >
-                                    Send Contract
-                                </Button>
+                                {error && <Error text={error} />}
+                                {err && <Error text={err} />}
+                                {message && <Success text={message} />}
+                                <BlueButton loading={loading} onClick={create_contract} text={'Send Contract'} />
                             </div>
                         </div>
                     </div>

@@ -27,12 +27,12 @@ export const create_contract_Reducer = (state = {}, action) => {
     }
 }
 
-export const get_contract_Reducer = (state = {}, action) => {
+export const get_contract_Reducer = (state = {loading: false}, action) => {
     switch (action.type) {
         case GET_A_CONTRACT_REQUEST:
             return { loading: true }
         case GET_A_CONTRACT_SUCCESS:
-            return { loading: false, contract: action.payload }
+            return { loading: false, message: 'Contract created successfully!' }
         case GET_A_CONTRACT_FAIL:
             return { loading: false, error: action.payload }
         default:
