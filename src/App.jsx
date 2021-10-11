@@ -25,14 +25,14 @@ function App() {
         <Route path = '/myjobs' component={MyJobs} />
         <Route path = '/explorejobs' component={ExploreJobs} />
         <Route path = '/exploresellers' component={ExploreSellers} />
+        <Route path = '/howitworks' component={HowItWorks} />
+        <Route path = '/contact' component={Contact} />
+        <Route path = '/job/:id' component={SingleJob} />
         <PrivateRoute path = '/chat/:id' component={Chat} />
         <PrivateRoute path = '/profile' component={Profile} />
         <PrivateRoute path = '/account' component={Account} />
-        <Route path = '/contracts' component={Contracts} />
-        <Route path = '/howitworks' component={HowItWorks} />
-        <Route path = '/contact' component={Contact} />
-        <Route path = '/contract/:id' component={CreateContract} />
-        <Route path = '/job/:id' component={SingleJob} />
+        <PrivateRoute path = '/contracts' component={Contracts} />
+        <PrivateRoute path = '/contract/:id' component={CreateContract} />
         <Route exact path="/" component={Home} />
         <Route path="*" component={NotFound} />
       </Switch>

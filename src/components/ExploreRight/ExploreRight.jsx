@@ -22,7 +22,7 @@ function ExploreRight() {
                     <div className="w-full flex flex-col">
                         <span onClick={() => history.push('/account')} className="flex flex-row items-center mb-8">
                             {
-                                <UserAvatar picture={userInfo?.user?.photoURL} />
+                                <UserAvatar picture={userInfo?.user?.photoURL} name={userInfo?.user?.displayName} />
                             }
                             <p className="text-gray-700 font-semibold ml-2">My Account</p>
                         </span>
