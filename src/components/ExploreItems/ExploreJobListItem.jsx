@@ -3,15 +3,16 @@ import { Text } from '@chakra-ui/react'
 import { HeartIcon } from '@heroicons/react/outline'
 import { useHistory } from 'react-router-dom'
 import { HStack } from '@chakra-ui/react'
+import moment from 'moment'
 
-export default function ExploreJobListItem({ title, description, amount, name, id }) {
+export default function ExploreJobListItem({ title, description, amount, name, id, time }) {
     const history = useHistory()
     return (
         <span onClick={() => history.push(`/job/${id}`)} className={`bg-white  transition duration-100 transform hover:scale-105 cursor-pointer md:px-0 px-2 py-4 justify-between items-center w-full self-center border-b border-gray-200 mb-4`}>
             <div className="flex flex-row items-center">
                 <p className="text-gray-700 font-semibold mr-2 text-xs">{name}</p>
                 <p className="text-gray-400 mr-2">&bull;</p>
-                <p className="text-xs text-gray-400">Posted 2 mins ago</p>
+                <p className="text-xs text-gray-400">Posted {moment(time).fromNow()}</p>
                 <div className="flex-1"></div>
                 <span className="p-2 bg-gray-100 hover:bg-gray-200 cursor-pointer rounded-full">
                         <HeartIcon height={16} width={16} className="text-gray-600" />
