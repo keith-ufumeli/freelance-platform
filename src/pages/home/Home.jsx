@@ -123,7 +123,7 @@ function Home() {
                             <ChakraCarousel gap={32}>
                                 {data.categories.map((post, index) => (
                                     <Flex
-                                        onClick={() => history.push("/explore")}
+                                        onClick={() => history.push("/exploresellers")}
                                         key={index}
                                         justifyContent="space-between"
                                         flexDirection="column"

@@ -27,7 +27,7 @@ function ChatLeft() {
             </div>
             {
                 loading ? (
-                    <p className="text-lg text-gray-700 text-center my-4">Loading...</p>
+                    <p className="text-lg text-gray-700 text-center font-semibold my-4">Loading...</p>
                 ) : (
                     <>
                         {

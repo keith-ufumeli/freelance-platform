@@ -14,9 +14,14 @@ import {
 import { useDispatch } from "react-redux";
 import { data } from "../../utils/data";
 
+const filter_price = [
+  {name: 'Low to high', value: 'ascending'},
+  {name: 'High to low', value: 'descending'}
+]
+
 function ExploreLeft({loading}) {
   const [distance, setDistance] = useState(30)
-//   const [selected, setSelected] = useState(filter_price[0])
+  // const [selected, setSelected] = useState(filter_price[0])
   const [selected_category, setSelecCategory] = useState("category");
   const dispatch = useDispatch()
   console.log(distance)
@@ -62,7 +67,7 @@ function ExploreLeft({loading}) {
                     className="mt-1 block w-full pl-3 pr-10 py-2 text-base border border-gray-300 focus:outline-none sm:text-sm rounded-md"
                     defaultValue="Price (Low to high)"
                   >
-                    {data.categories.map((option, index) => (
+                    {filter_price.map((option, index) => (
                       <option key={index}>{option.name}</option>
                     ))}
                   </select>

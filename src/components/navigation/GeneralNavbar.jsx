@@ -63,8 +63,8 @@ function GeneralNavbar() {
                                         alt="logo"
                                     />
                                 </Link>
-                                <Link to='/explorejobs' className={`${location.pathname === '/explorejobs' ? "border-b-2 border-blue-900" : "border-none"} text-sm flex-shrink-0 md:flex hidden ml-4 text-gray-600 items-center font-semibold`} >Explore jobs</Link>
-                                <Link to='/exploresellers' className={`${location.pathname === '/exploresellers' ? "border-b-2 border-blue-900" : "border-none "} text-sm flex-shrink-0 md:flex hidden ml-4 text-gray-600 items-center font-semibold`} >Explore sellers</Link>
+                                <Link to='/explorejobs' className={`${location.pathname === '/explorejobs' ? "border-b-2 border-blue-900" : "border-none"} text-sm flex-shrink-0 lg:flex md:flex hidden ml-4 text-gray-600 items-center font-semibold`} >Explore jobs</Link>
+                                <Link to='/exploresellers' className={`${location.pathname === '/exploresellers' ? "border-b-2 border-blue-900" : "border-none "} text-sm flex-shrink-0 lg:flex md:flex hidden ml-4 text-gray-600 items-center font-semibold`} >Explore sellers</Link>
                             </div>
                             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                                 <div className="hidden sm:flex items-center sm:ml-6">
