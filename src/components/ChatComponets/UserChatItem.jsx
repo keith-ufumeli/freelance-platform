@@ -1,14 +1,18 @@
 import moment from 'moment'
 import React from 'react'
 import { useDispatch } from 'react-redux'
+import { useHistory } from 'react-router'
 import { open_chat_Action } from '../../redux/actions/chatActions'
 import UserAvatar from '../UserAvatar/UserAvatar'
 
-function UserChatItem({picture, time, message, not_sent_by_you, username, room_id}) {
+function UserChatItem({picture, time, message, not_sent_by_you, username, user_id}) {
     const dispatch = useDispatch()
+    const history = useHistory()
 
     const open_chat = () =>{
         dispatch(open_chat_Action())
+        history.push(`/chat/${user_id}`)
+        window.location.reload()
     }
 
     return (

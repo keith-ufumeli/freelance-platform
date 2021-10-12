@@ -1,4 +1,4 @@
-import { ArrowLeftIcon } from '@heroicons/react/outline'
+import { ArrowLeftIcon, ChevronRightIcon } from '@heroicons/react/outline'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { close_chat_Action, send_message_Action } from '../../redux/actions/chatActions'
@@ -14,14 +14,23 @@ import { Fragment } from 'react'
 
 
 function ChatBody() {
-    const [body, setBody] = useState()
+    const [body, setBody] = useState('')
     const _user = useSelector(state => state.user_login)
     const { userInfo } = _user //logged in user
     const { id } = useParams() //user to send message to
+    const [rows, setRows] = useState(1);
 
     //to gert all messaged
     const [page_loading, setPageLoading] = useState(false)
     const [all_messages, setAllMessages] = useState([])
+
+    useEffect(() => {
+        const rowlen = body.split("\n");
+
+        if (rowlen.length > 1) {
+            setRows(rowlen.length);
+        }
+    }, [body]);
 
     useEffect(() => {
         //get user data from async strage
@@ -50,7 +59,12 @@ function ChatBody() {
     }
 
     const sentMessage = () => {
-        dispatch(send_message_Action(id, userInfo?.token, body))
+        if (body === '') {
+            console.log('empty body')
+        } else {
+            dispatch(send_message_Action(id, userInfo?.token, body))
+            setBody('')
+        }
     }
 
     return (
@@ -60,28 +74,35 @@ function ChatBody() {
                 <p className="text-gray-700 text-sm">Close chat</p>
             </div>
             <div className="flex-1"></div>
-            {
-                all_messages?.map((message, index) => (
-                    <Fragment key={index}>
-                        {
-                            message.sent_by === userInfo?.user?._id ? (
-                                <SentMessage message={message.body} time={message.createdAt} />
-                            ) : (
-                                <ReceivedMessage message={message.body} time={message.createdAt} />
-                            )
-                        }
-                    </Fragment>
-                ))
-            }
-            <div className="input" className="text-gray-700 rounded-full bottom-4 w-full mt-4 flex flex-row items-center">
-                <input
+            {page_loading ? (
+                <p className="text-center my-16 text-lg font-semibold text-gray-700">Loading ...</p>
+            ) : (
+                <>
+                    {
+                        all_messages?.map((message, index) => (
+                            <Fragment key={index}>
+                                {
+                                    message.sent_by === userInfo?.user?._id ? (
+                                        <SentMessage message={message.body} time={message.createdAt} />
+                                    ) : (
+                                        <ReceivedMessage message={message.body} time={message.createdAt} />
+                                    )
+                                }
+                            </Fragment>
+                        ))
+                    }
+                </>
+            )}
+            <div className="input" className="text-gray-700 rounded-full bottom-4 w-full mt-4 flex flex-row items-center pb-8">
+                <textarea
+                    rows={rows}
                     type="text"
-                    className="py-3 px-4 w-full rounded-full flex-1 align-bottom outline-none bg-gray-200"
+                    className="py-3 px-4 rounded-lg flex-1 align-bottom outline-none bg-gray-200"
                     placeholder="Type message..."
                     onChange={e => setBody(e.target.value)}
                 />
-                <span onClick={sentMessage} className="cursor-pointer">
-                    <p>send</p>
+                <span onClick={sentMessage} className="cursor-pointer rounded-full bg-blue-900 p-3 ml-2 hover:bg-blue-800">
+                    <ChevronRightIcon height={20} width={20} className="text-white" />
                 </span>
             </div>
         </div>
