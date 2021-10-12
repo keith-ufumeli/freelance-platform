@@ -12,7 +12,6 @@ function UserChatItem({picture, time, message, not_sent_by_you, username, user_i
     const open_chat = () =>{
         dispatch(open_chat_Action())
         history.push(`/chat/${user_id}`)
-        window.location.reload()
     }
 
     return (

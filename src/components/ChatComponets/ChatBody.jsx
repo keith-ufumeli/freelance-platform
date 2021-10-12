@@ -43,7 +43,7 @@ function ChatBody() {
             setAllMessages(res.data.messages)
             setPageLoading(false)
         })
-    }, [])
+    }, [id])
 
     useEffect(() => {
         socket.on('message', data => {
