@@ -11,6 +11,8 @@ import third from "../../assets/homeQuick.svg";
 import analytics from "../../assets/analytics.svg";
 import { Link, useHistory } from 'react-router-dom'
 import ChakraCarousel from '../../components/ChakraCourosel/ChakraCourosel';
+import { useDispatch } from 'react-redux';
+import { set_search_query_Action } from '../../redux/actions/SearchAction';
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
@@ -18,6 +20,7 @@ function classNames(...classes) {
 
 function Home() {
     const history = useHistory()
+    const dispatch = useDispatch()
     return (
         <GeneralLayout>
             <div className="home pb-16">
@@ -123,7 +126,10 @@ function Home() {
                             <ChakraCarousel gap={32}>
                                 {data.categories.map((post, index) => (
                                     <Flex
-                                        onClick={() => history.push("/exploresellers")}
+                                        onClick={() => {
+                                            dispatch(set_search_query_Action(post.name))
+                                            history.push("/exploresellers")
+                                        }}
                                         key={index}
                                         justifyContent="space-between"
                                         flexDirection="column"
