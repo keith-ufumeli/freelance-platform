@@ -41,6 +41,7 @@ function ExploreSellers() {
                                                 price={service.price}
                                                 id={service._id}
                                                 owner={service.owner}
+                                                category={service.category}
                                             />
                                         </div>
                                     ))
