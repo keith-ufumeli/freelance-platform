@@ -16,6 +16,7 @@ import HowItWorks from './pages/HowItWorks/HowItWorks';
 import Contact from './pages/Contact/Contact';
 import NotFound from './pages/notfound/NotFound'
 import Upgrade from './pages/upgrade/Upgrade';
+import SignContract from './pages/SignContract/SignContract';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path = '/contact' component={Contact} />
         <Route path = '/job/:id' component={SingleJob} />
         <Route path = '/upgrade' component={Upgrade} />
+        <Route path = '/signcontract/:id' component={SignContract} />
         <PrivateRoute path = '/chat/:id' component={Chat} />
         <PrivateRoute path = '/chat' component={Chat} />
         <PrivateRoute path = '/profile' component={Profile} />

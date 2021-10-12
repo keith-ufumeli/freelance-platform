@@ -39,15 +39,19 @@ export const create_a_contract = (msg_obj, id, token) => (dispatch) => {
 
 }
 
-export const get_a_Contract = (id) => (dispatch) => {
+export const get_a_Contract = (id, token) => (dispatch) => {
     dispatch({
         type: GET_A_CONTRACT_REQUEST,
         payload: { id }
     })
-    axios.get(`${apiUrl}/contract/${id}`).then(res => {
+    axios.get(`${apiUrl}/contract/single/${id}`,{
+        headers: {
+            Authorization: token
+        }
+    }).then(res => {
         dispatch({
             type: GET_A_CONTRACT_SUCCESS,
-            payload: res.data
+            payload: res.data.contract
         })
     }).catch(error => {
         dispatch({
