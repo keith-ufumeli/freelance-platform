@@ -70,7 +70,7 @@ function GeneralNavbar() {
                                 <div className="hidden sm:flex items-center sm:ml-6">
                                     {
                                         userInfo ? (
-                                            <div className="flex space-x-4">
+                                            <div className="flex ">
                                                 {nav_options.BuyerAuthenticatedNavigation.map((item) => (
                                                     <Link to={item.href ? item.href : '#'}
                                                         style={{ transition: "all .15s ease" }}
@@ -83,7 +83,7 @@ function GeneralNavbar() {
                                                 ))}
                                             </div>
                                         ) : userInfo?.seller ? (
-                                            <div className="flex space-x-4">
+                                            <div className="flex ">
                                                 {nav_options.SellerAuthenticatedNavigation.map((item) => (
                                                     <Link to={item.href ? item.href : '#'}
                                                         style={{ transition: "all .15s ease" }}
@@ -96,7 +96,7 @@ function GeneralNavbar() {
                                                 ))}
                                             </div>
                                         ) : (
-                                            <div className="flex space-x-4">
+                                            <div className="flex ">
                                                 {nav_options.navigation.map((item) => (
                                                     <Link to={item.href ? item.href : '#'}
                                                         style={{ transition: "all .15s ease" }}
@@ -124,7 +124,7 @@ function GeneralNavbar() {
                                                             </>
                                                         ) : (
                                                             <>
-                                                                <div className="space-x-4">
+                                                                <div className="">
                                                                     <Link to='/register' className="bg-yellow-400 hover:bg-yellow-500 md:block hidden py-2 px-4 text-gray-700 rounded-sm">
                                                                         Join community
                                                                     </Link>

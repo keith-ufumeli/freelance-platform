@@ -12,7 +12,6 @@ import axios from 'axios'
 import { socket } from '../../utils/socket'
 import { Fragment } from 'react'
 
-
 function ChatBody() {
     const [body, setBody] = useState('')
     const _user = useSelector(state => state.user_login)
@@ -50,7 +49,6 @@ function ChatBody() {
     useEffect(() => {
         socket.on('message', data => {
             setAllMessages((old_messages) => [...old_messages, data])
-            // console.log(data)
         })
     }, [socket])
 
@@ -85,7 +83,7 @@ function ChatBody() {
                             <>
                                 {
                                     all_messages?.map((message, index) => (
-                                        <Fragment key={index}>
+                                        <div key={index} className="flex flex-col flex-1 h-full">
                                             {
                                                 message.sent_by === userInfo?.user?._id ? (
                                                     <SentMessage message={message.body} time={message.createdAt} />
@@ -93,12 +91,12 @@ function ChatBody() {
                                                     <ReceivedMessage message={message.body} time={message.createdAt} />
                                                 )
                                             }
-                                        </Fragment>
+                                        </div>
                                     ))
                                 }
                             </>
                         )}
-                        <div className="input" className="text-gray-700 rounded-full bottom-4 w-full mt-4 flex flex-row items-center pb-8">
+                        <div className="input" className="text-gray-700 rounded-full bottom-4 w-full mt-4 flex flex-row  pb-8 self-end">
                             <textarea
                                 rows={rows}
                                 type="text"
@@ -106,9 +104,11 @@ function ChatBody() {
                                 placeholder="Type message..."
                                 onChange={e => setBody(e.target.value)}
                             />
+                            <div className="flex flex-col self-end">
                             <span onClick={send_loading ? () => console.log('loading') : sentMessage} className="cursor-pointer rounded-full bg-blue-900 p-3 ml-2 hover:bg-blue-800">
                                 <ChevronRightIcon height={20} width={20} className="text-white" />
                             </span>
+                            </div>
                         </div>
                     </>
                 ) : (
