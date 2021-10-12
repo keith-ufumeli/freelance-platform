@@ -83,7 +83,7 @@ function ChatBody() {
                             <>
                                 {
                                     all_messages?.map((message, index) => (
-                                        <div key={index} className="flex flex-col flex-1 h-full">
+                                        <div key={index} className="flex flex-col">
                                             {
                                                 message.sent_by === userInfo?.user?._id ? (
                                                     <SentMessage message={message.body} time={message.createdAt} />

@@ -21,7 +21,7 @@ function Chat() {
             <div className="md:hidden flex">
                 {
                     chat_state === 'open' ? (
-                        <div className="w-full flex-col">
+                        <div className="w-full min-h-screen flex-col">
                             <ChatBody />
                         </div>
                     ) : (
