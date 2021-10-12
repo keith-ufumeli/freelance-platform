@@ -12,14 +12,14 @@ import {
 } from "../constants/chatConstants"
 
 //sending a message
-export const send_message_Reducer = (state = {loading:false}, action) => {
+export const send_message_Reducer = (state = {send_loading:false}, action) => {
     switch (action.type) {
         case SEND_MESSAGE_REQUEST:
-            return { loading: true }
+            return { send_loading: true }
         case SEND_MESSAGE_SUCCESS:
-            return { loading: false, message: action.payload }
+            return { send_loading: false, message: action.payload }
         case SEND_MESSAGE_FAIL:
-            return { loading: false, error: action.payload }
+            return { send_loading: false, error: action.payload }
         default:
             return state
     }

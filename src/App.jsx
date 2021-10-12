@@ -31,6 +31,7 @@ function App() {
         <Route path = '/job/:id' component={SingleJob} />
         <Route path = '/upgrade' component={Upgrade} />
         <PrivateRoute path = '/chat/:id' component={Chat} />
+        <PrivateRoute path = '/chat' component={Chat} />
         <PrivateRoute path = '/profile' component={Profile} />
         <PrivateRoute path = '/account' component={Account} />
         <PrivateRoute path = '/contracts' component={Contracts} />

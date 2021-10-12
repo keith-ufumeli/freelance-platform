@@ -19,6 +19,8 @@ function ChatBody() {
     const { userInfo } = _user //logged in user
     const { id } = useParams() //user to send message to
     const [rows, setRows] = useState(1);
+    const _message = useSelector(state => state.send_message)
+    const { send_loading } = _message
 
     //to gert all messaged
     const [page_loading, setPageLoading] = useState(false)
@@ -73,38 +75,48 @@ function ChatBody() {
                 <ArrowLeftIcon height={16} width={16} className='text-gray-700 mr-2' />
                 <p className="text-gray-700 text-sm">Close chat</p>
             </div>
-            <div className="flex-1"></div>
-            {page_loading ? (
-                <p className="text-center my-16 text-lg font-semibold text-gray-700">Loading ...</p>
-            ) : (
-                <>
-                    {
-                        all_messages?.map((message, index) => (
-                            <Fragment key={index}>
+            {
+                id ? (
+                    <>
+                        <div className="flex-1"></div>
+                        {page_loading ? (
+                            <p className="text-center my-16 text-lg font-semibold text-gray-700">Loading ...</p>
+                        ) : (
+                            <>
                                 {
-                                    message.sent_by === userInfo?.user?._id ? (
-                                        <SentMessage message={message.body} time={message.createdAt} />
-                                    ) : (
-                                        <ReceivedMessage message={message.body} time={message.createdAt} />
-                                    )
+                                    all_messages?.map((message, index) => (
+                                        <Fragment key={index}>
+                                            {
+                                                message.sent_by === userInfo?.user?._id ? (
+                                                    <SentMessage message={message.body} time={message.createdAt} />
+                                                ) : (
+                                                    <ReceivedMessage message={message.body} time={message.createdAt} />
+                                                )
+                                            }
+                                        </Fragment>
+                                    ))
                                 }
-                            </Fragment>
-                        ))
-                    }
-                </>
-            )}
-            <div className="input" className="text-gray-700 rounded-full bottom-4 w-full mt-4 flex flex-row items-center pb-8">
-                <textarea
-                    rows={rows}
-                    type="text"
-                    className="py-3 px-4 rounded-lg flex-1 align-bottom outline-none bg-gray-100"
-                    placeholder="Type message..."
-                    onChange={e => setBody(e.target.value)}
-                />
-                <span onClick={sentMessage} className="cursor-pointer rounded-full bg-blue-900 p-3 ml-2 hover:bg-blue-800">
-                    <ChevronRightIcon height={20} width={20} className="text-white" />
-                </span>
-            </div>
+                            </>
+                        )}
+                        <div className="input" className="text-gray-700 rounded-full bottom-4 w-full mt-4 flex flex-row items-center pb-8">
+                            <textarea
+                                rows={rows}
+                                type="text"
+                                className="py-3 px-4 rounded-lg flex-1 align-bottom outline-none bg-gray-100"
+                                placeholder="Type message..."
+                                onChange={e => setBody(e.target.value)}
+                            />
+                            <span onClick={send_loading ? () => console.log('loading') : sentMessage} className="cursor-pointer rounded-full bg-blue-900 p-3 ml-2 hover:bg-blue-800">
+                                <ChevronRightIcon height={20} width={20} className="text-white" />
+                            </span>
+                        </div>
+                    </>
+                ) : (
+                    <div className="text-lg text-gray-700 font-semibold flex flex-row items-center w-full h-full">
+                        <p className="self-center text-center w-full">Click on a chat to start talking</p>
+                    </div>
+                )
+            }
         </div>
     )
 }
