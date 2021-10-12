@@ -24,8 +24,6 @@ function NavbarNotification() {
     dispatch(get_user_contracts_Action(userInfo?.token))
   }, [dispatch, userInfo?.token])
 
-  console.log(contracts)
-
   if (loading) {
     return (
       <>
