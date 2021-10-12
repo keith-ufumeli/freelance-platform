@@ -19,6 +19,8 @@ function ExploreSellers() {
         dispatch(explore_serviceS_Action(query))
     }, [dispatch, query])
 
+    console.log(services)
+
     return (
         <ExploreLayout>
             {error ? (
@@ -28,7 +30,7 @@ function ExploreSellers() {
             ) : (
                 <>
                     {
-                        services?.services.length > 1 ?(
+                        services?.services.length >= 1 ?(
                             <>
                                 {
                                     services?.services.map((service, index) => (
