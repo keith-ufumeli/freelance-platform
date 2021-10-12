@@ -10,6 +10,9 @@ import {
     GET_A_CONTRACT_FAIL,
     GET_A_CONTRACT_REQUEST,
     GET_A_CONTRACT_SUCCESS,
+    REACT_TO_A_CONTRACTS_FAIL,
+    REACT_TO_A_CONTRACTS_REQUEST,
+    REACT_TO_A_CONTRACTS_SUCCESS,
 } from "../constants/contractsConstants"
 
 export const create_a_contract = (msg_obj, id, token) => (dispatch) => {
@@ -93,4 +96,26 @@ export const get_user_contracts_Action = (token, status) => (dispatch) => {
 export const get_all_user_contracts_Action = (id) => (dispatch) => {}
 
 //react to a contract 
-export const react_to_a_contract_Action = (id, status) => (dispatch) => {}
+export const react_to_a_contract_Action = (id, signed, token) => (dispatch) => {
+    dispatch({
+        type: REACT_TO_A_CONTRACTS_REQUEST,
+        payload: {id, signed}
+    })
+    axios.patch(`${apiUrl}/contract/response/${id}`,{signed: signed, token},{
+        headers: {
+            Authorization: token
+        }
+    }).then(res=>{
+        dispatch({
+            type: REACT_TO_A_CONTRACTS_SUCCESS,
+            payload: res.data
+        })
+    }).catch(error=>{
+        dispatch({
+            type: REACT_TO_A_CONTRACTS_FAIL,
+            payload: error.response && error.response.data.error
+                ? error.response.data.error
+                : error.message,
+        })
+    })
+}

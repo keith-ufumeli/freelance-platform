@@ -2,30 +2,34 @@ import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router'
-import { get_a_Contract } from '../../redux/actions/contractActions'
+import { get_a_Contract, react_to_a_contract_Action } from '../../redux/actions/contractActions'
 import GeneralLayout from '../../layouts/GeneralLayout'
 import Success from '../../components/Alerts/Success'
+import Error from '../../components/Alerts/Error'
+import BlueButton from '../../components/Buttons/BlueButton'
 
 function SignContract() {
     const _contract = useSelector(state => state.single_contract)
-    const _reaction = useSelector(state=> state.react_to_contract)
+    const _reaction = useSelector(state => state.react_to_contract)
     const _user = useSelector(state => state.user_login)
-    const {userInfo} = _user
-    const {react_loading, message} = _reaction
+    const { userInfo } = _user
+    const { react_loading, message, react_error } = _reaction
     const { loading, contract } = _contract
     const dispatch = useDispatch()
     const { id } = useParams()
 
     useEffect(() => {
         dispatch(get_a_Contract(id, userInfo?.token))
-    }, [dispatch])
+    }, [dispatch, id])
 
     console.log(contract)
 
-    const accept_contract = () =>{
+    const accept_contract = () => {
+        dispatch(react_to_a_contract_Action(id, true, userInfo?.token))
     }
 
-    const reject_contract = () =>{
+    const reject_contract = () => {
+        dispatch(react_to_a_contract_Action(id, false, userInfo?.token))
     }
 
 
@@ -106,24 +110,19 @@ function SignContract() {
                                     Action
                                 </dt>
                                 <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                    {react_error && <Error text={react_error} />}
                                     {message && <Success text={message} />}
                                     <ul className="divide-y divide-gray-200">
                                         <li className="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
                                             <div className="flex flex-row items-center justify-end w-full">
-                                                {
-                                                    react_loading ? (
-                                                        <div className="text-green-700 mr-3 font-semibold">Loading...</div>
-                                                    ):(
-                                                        <div onClick={accept_contract} className="text-green-700 mr-3 font-semibold cursor-pointer">Accept</div>
-                                                    )
-                                                }
-                                                {
-                                                    react_loading ? (
-                                                        <div className="text-red-700 mr-3 font-semibold">Loading...</div>
-                                                    ):(
-                                                        <div onClick={reject_contract} className="text-red-700 mr-3 font-semibold cursor-pointer">Decline</div>
-                                                    )
-                                                }
+
+                                                <div className="flex flex-col mr-3">
+                                                    <BlueButton text={'Accept'} onClick={accept_contract} loading={react_loading} />
+                                                </div>
+                                                <div className="flex flex-col">
+                                                    <BlueButton text={'Decline'} outline onClick={reject_contract} loading={react_loading} />
+                                                </div>
+
                                             </div>
                                         </li>
                                     </ul>
