@@ -17,6 +17,7 @@ import Contact from './pages/Contact/Contact';
 import NotFound from './pages/notfound/NotFound'
 import Upgrade from './pages/upgrade/Upgrade';
 import SignContract from './pages/SignContract/SignContract';
+import Proposals from './pages/Proposals/Proposals';
 
 function App() {
   return (
@@ -24,7 +25,6 @@ function App() {
       <Switch>
         <Route path = '/register' component={Register} />
         <Route path = '/login' component={Login} />
-        <Route path = '/myjobs' component={MyJobs} />
         <Route path = '/explorejobs' component={ExploreJobs} />
         <Route path = '/exploresellers' component={ExploreSellers} />
         <Route path = '/howitworks' component={HowItWorks} />
@@ -32,6 +32,8 @@ function App() {
         <Route path = '/job/:id' component={SingleJob} />
         <Route path = '/upgrade' component={Upgrade} />
         <Route path = '/signcontract/:id' component={SignContract} />
+        <PrivateRoute path = '/myjobs' component={MyJobs} />
+        <PrivateRoute path = '/proposals' component={Proposals} />
         <PrivateRoute path = '/chat/:id' component={Chat} />
         <PrivateRoute path = '/chat' component={Chat} />
         <PrivateRoute path = '/profile' component={Profile} />

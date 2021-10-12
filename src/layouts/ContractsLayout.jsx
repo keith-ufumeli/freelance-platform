@@ -15,6 +15,7 @@ import Error from "../components/Alerts/Error";
 const contract_routes = [
     { name: "Contracts", location: "/contracts" },
     { name: "Jobs", location: "/myjobs" },
+    {name: "Proposals", location: '/proposals'}
 ];
 
 export default function ContractsLayout({ children }) {
@@ -129,7 +130,7 @@ export default function ContractsLayout({ children }) {
                     </>
                     <div className="flex jobs w-full">
                         <div className="w-full pt-2">
-                            <div className="w-full p-2 mx-auto bg-white rounded-sm shadow">
+                            <div className="w-full flex flex-col p-2 mx-auto bg-white rounded-sm shadow">
                                 <div className="flex flex-row items-center">
                                     {contract_routes.map((option, index) => (
                                         <span
@@ -138,7 +139,7 @@ export default function ContractsLayout({ children }) {
                                             className={`${location.pathname === option.location
                                                 ? "border-b-2 border-blue-900 bg-gray-100 "
                                                 : "border-none "
-                                                } text-gray-700 hover:bg-gray-100 cursor-pointer py-4 mb-8 px-4 text font-semibold`}
+                                                } text-gray-700 hover:bg-gray-100 cursor-pointer py-2 mb-8 px-2 text font-semibold`}
                                         >
                                             {option.name}
                                         </span>

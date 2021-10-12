@@ -9,12 +9,12 @@ export const nav_options = {
 
   SellerAuthenticatedNavigation: [
     { name: 'Messages', href: '/chat', current: true },
-    { name: 'My Jobs', href: '/myjobs', current: true },
+    { name: 'My Listings', href: '/myjobs', current: true },
 
   ],
 
   BuyerAuthenticatedNavigation: [
-    { name: 'My Jobs', href: '/myjobs', current: true },
+    { name: 'My Listings', href: '/myjobs', current: true },
     { name: <ChatAlt2Icon height={20} width={20} className="text-gray-700" />, href: '/chat/?', current: true },
     {
       name: <span>
@@ -26,7 +26,7 @@ export const nav_options = {
   MobileBuyerAuthenticatedNavigation: [
     { name: 'Explore Sellers', href: '/exploresellers', current: false },
     { name: 'Explore Jobs', href: '/explorejobs', current: true },
-    { name: 'My Jobs', href: '/myjobs', current: true },
+    { name: 'My Listings', href: '/myjobs', current: true },
     {
       name: <div className="flex flex-row items-center">
         <ChatAlt2Icon height={20} width={20} className="text-gray-700" />
