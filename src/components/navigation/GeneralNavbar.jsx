@@ -63,8 +63,8 @@ function GeneralNavbar() {
                                         alt="logo"
                                     />
                                 </Link>
-                                <Link to='/explorejobs' className={`${location.pathname === '/explorejobs' ? "border-b-2 border-blue-900" : "border-none"} text-sm flex-shrink-0 md:flex hidden ml-4 text-gray-600 items-center`} >Explore jobs</Link>
-                                <Link to='/exploresellers' className={`${location.pathname === '/exploresellers' ? "border-b-2 border-blue-900" : "border-none "} text-sm flex-shrink-0 md:flex hidden ml-4 text-gray-600 items-center`} >Explore sellers</Link>
+                                <Link to='/explorejobs' className={`${location.pathname === '/explorejobs' ? "border-b-2 border-blue-900" : "border-none"} text-sm flex-shrink-0 md:flex hidden ml-4 text-gray-600 items-center font-semibold`} >Explore jobs</Link>
+                                <Link to='/exploresellers' className={`${location.pathname === '/exploresellers' ? "border-b-2 border-blue-900" : "border-none "} text-sm flex-shrink-0 md:flex hidden ml-4 text-gray-600 items-center font-semibold`} >Explore sellers</Link>
                             </div>
                             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                                 <div className="hidden sm:flex items-center sm:ml-6">
@@ -75,7 +75,7 @@ function GeneralNavbar() {
                                                     <Link to={item.href ? item.href : '#'}
                                                         style={{ transition: "all .15s ease" }}
                                                         key={item.name}
-                                                        className={classNames('text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm ')}
+                                                        className={classNames('text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md font-semibold text-sm ')}
                                                         aria-current={item.current ? 'page' : undefined}
                                                     >
                                                         <p>{item.name}</p>
@@ -88,7 +88,7 @@ function GeneralNavbar() {
                                                     <Link to={item.href ? item.href : '#'}
                                                         style={{ transition: "all .15s ease" }}
                                                         key={item.name}
-                                                        className={classNames('text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm')}
+                                                        className={classNames('text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md font-semibold text-sm')}
                                                         aria-current={item.current ? 'page' : undefined}
                                                     >
                                                         <p>{item.name}</p>
@@ -101,7 +101,7 @@ function GeneralNavbar() {
                                                     <Link to={item.href ? item.href : '#'}
                                                         style={{ transition: "all .15s ease" }}
                                                         key={item.name}
-                                                        className={classNames('text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm')}
+                                                        className={classNames('text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md font-semibold text-sm')}
                                                         aria-current={item.current ? 'page' : undefined}
                                                     >
                                                         <p>{item.name}</p>
@@ -150,7 +150,7 @@ function GeneralNavbar() {
                                             >
                                                 <Menu.Items
                                                     static
-                                                    className="origin-top-right transition duration-150 ease-in-out absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                                                    className="origin-top-right transition duration-150 ease-in-out absolute right-0 mt-2 w-48 rounded-md font-semibold shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
                                                 >
                                                     <Menu.Item>
                                                         {({ active }) => (
@@ -217,7 +217,7 @@ function GeneralNavbar() {
                                         {nav_options.BuyerAuthenticatedNavigation.map((item) => (
                                             <Link to={item.href ? item.href : '#'}
                                                 key={item.name}
-                                                className={classNames('text-gray-600 hover:text-gray-900 block px-3 py-2 rounded-md text-base')}
+                                                className={classNames('text-gray-600 hover:text-gray-900 block px-3 py-2 rounded-md font-semibold text-base')}
                                                 aria-current={item.current ? 'page' : undefined}
                                             >
                                                 {item.name}
@@ -228,7 +228,7 @@ function GeneralNavbar() {
                                         {nav_options.MobileBuyerAuthenticatedNavigation.map((item) => (
                                             <Link to={item.href ? item.href : '#'}
                                                 key={item.name}
-                                                className={classNames('text-gray-600 hover:text-gray-900 block px-3 py-2 rounded-md text-base')}
+                                                className={classNames('text-gray-600 hover:text-gray-900 block px-3 py-2 rounded-md font-semibold text-base')}
                                                 aria-current={item.current ? 'page' : undefined}
                                             >
                                                 {item.name}
@@ -241,7 +241,7 @@ function GeneralNavbar() {
                                     {nav_options.navigation.map((item) => (
                                         <Link to={item.href ? item.href : '#'}
                                             key={item.name}
-                                            className={classNames('text-gray-600 hover:text-gray-900 block px-3 py-2 rounded-md text-base')}
+                                            className={classNames('text-gray-600 hover:text-gray-900 block px-3 py-2 rounded-md font-semibold text-base')}
                                             aria-current={item.current ? 'page' : undefined}
                                         >
                                             {item.name}
