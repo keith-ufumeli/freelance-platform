@@ -2,8 +2,8 @@ import React from 'react'
 
 function ReceivedMessage({message}) {
     return (
-        <div className="text-white bg-gray-200 mb-1 text-sm p-2 rounded self-start">
-            <p className="text-gray-700">{message}</p>
+        <div className="bg-gray-100 mb-1 text-sm p-1 rounded self-start">
+            <p className="text-gray-800 text-sm">{message}</p>
         </div>
     )
 }

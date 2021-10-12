@@ -97,7 +97,7 @@ function ChatBody() {
                 <textarea
                     rows={rows}
                     type="text"
-                    className="py-3 px-4 rounded-lg flex-1 align-bottom outline-none bg-gray-200"
+                    className="py-3 px-4 rounded-lg flex-1 align-bottom outline-none bg-gray-100"
                     placeholder="Type message..."
                     onChange={e => setBody(e.target.value)}
                 />
