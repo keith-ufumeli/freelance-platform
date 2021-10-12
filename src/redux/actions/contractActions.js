@@ -65,7 +65,7 @@ export const get_user_contracts_Action = (token, status) => (dispatch) => {
         type: GET_ALL_USER_CONTRACTS_REQUEST,
         payload: { token }
     })
-    axios.get(`${apiUrl}/contract/user`,{status: 'pending'}, {
+    axios.get(`${apiUrl}/contract/user`, {
         headers: {
             Authorization: token
         }

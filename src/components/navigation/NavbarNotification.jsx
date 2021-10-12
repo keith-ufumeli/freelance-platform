@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Text } from '@chakra-ui/layout'
 import { useHistory } from 'react-router'
 import { get_user_contracts_Action } from '../../redux/actions/contractActions'
+import UserAvatar from '../UserAvatar/UserAvatar'
+import BlueButton from '../Buttons/BlueButton'
 
 function NavbarNotification() {
   const [show, setShow] = useState(false)
@@ -19,7 +21,7 @@ function NavbarNotification() {
   const history = useHistory()
 
   useEffect(() => {
-    dispatch(get_user_contracts_Action(userInfo?.token, 'pending'))
+    dispatch(get_user_contracts_Action(userInfo?.token))
   }, [dispatch, userInfo?.token])
 
   console.log(contracts)
@@ -76,14 +78,14 @@ function NavbarNotification() {
         <span className="relative inline-block">
           <BellIcon className="text-gray-700" height={20} width={20} />
           {
-            contracts?.length > 0 ? (
+            contracts?.contracts?.length > 0 ? (
               <span className="absolute top-0 right-0 inline-flex items-center justify-center p-1 text-xs font-semibold leading-none text-blue-100 transform translate-x-1/2 -translate-y-1/2 bg-blue-900 rounded-full"></span>
             ) : null
           }
         </span>
       </div>
       {
-        contracts?.length < 1 ? (
+        contracts?.contracts?.length < 1 ? (
           <div aria-live="assertive"
             className="fixed inset-12 flex items-end px-4 py-6 pointer-events-none sm:p-6 sm:items-start">
             <div className="w-full flex flex-col items-center space-y-4 sm:items-end">
@@ -121,9 +123,9 @@ function NavbarNotification() {
           </div>
         ) : <>
           {
-            contracts?.map((contract, index) => (
+            contracts?.contracts?.map((contract, index) => (
               <div
-              key={index}
+                key={index}
                 aria-live="assertive"
                 className="fixed inset-12 flex items-end px-4 py-6 pointer-events-none sm:p-6 sm:items-start"
               >
@@ -154,33 +156,19 @@ function NavbarNotification() {
                           </button>
                         </div>
                       </div>
-                      <div className="p-4">
+                      <div className="p-2">
                         <div className="flex items-start">
                           <div className="flex-shrink-0 pt-0.5">
-                            {/* <img
-                          className="h-10 w-10 rounded-full"
-                          src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
-                          alt=""
-                        /> */}
-                            <p className="h-10 w-10 rounded-full bg-blue-200"></p>
+                            <UserAvatar picture={contract.lastname} name={contract.company} />
                           </div>
                           <div className="ml-3 w-0 flex-1">
-                            <p className="text-sm font-medium text-gray-900">{contract.contracts.company}</p>
-                            <Text noOfLines={1} className="mt-1 text-sm text-gray-500">{contract.contracts.details}</Text>
-                            <div className="mt-4 flex">
-                              <button
-                                onClick={()=> history.push(`/signcontract/${contract.id}`)}
-                                type="button"
-                                className="inline-flex items-center py-1 px-2 border border-transparent shadow-sm text-xs leading-4 rounded-md text-white bg-blue-900 hover:bg-blue-800 focus:outline-none"
-                              >
-                                View
-                              </button>
-                              <button
-                                type="button"
-                                className="ml-3 inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none"
-                              >
-                                Decline
-                              </button>
+                            <p className="text-sm font-medium text-gray-900">{contract.company}</p>
+                            <Text noOfLines={1} className="mt-1 text-sm text-gray-500">{contract.details}</Text>
+                            <div className="mt-2 flex">
+
+                              <BlueButton text="View" className="w-auto mr-2 text-center ml-2" onClick={() => history.push(`/signcontract/${contract._id}`)} />
+                              <BlueButton outline text="Cancel" className="w-auto" />
+
                             </div>
                           </div>
 
