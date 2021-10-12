@@ -31,7 +31,7 @@ export const data = {
     ],
     categories :[
         {name: 'Programming & tech', image: programming},
-        {name: 'Writting & translation', image: writting},
+        {name: 'Writing & translation', image: writting},
         {name: 'Video  & animation', image: video},
         {name: 'Graphics & design', image: graphics},
         {name: 'Home & living', image: home},

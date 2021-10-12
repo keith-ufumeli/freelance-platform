@@ -1,36 +1,35 @@
 import React, { useState } from "react";
 import {
-    ChevronDownIcon,
-  } from "@heroicons/react/outline";
+  ChevronDownIcon,
+} from "@heroicons/react/outline";
 import { RadioGroup } from "@headlessui/react";
 
 import {
-    Slider,
-    SliderTrack,
-    SliderFilledTrack,
-    SliderThumb,
-    Text,
-  } from "@chakra-ui/react";
+  Slider,
+  SliderTrack,
+  SliderFilledTrack,
+  SliderThumb,
+  Text,
+} from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
 import { data } from "../../utils/data";
+import { set_search_query_Action } from "../../redux/actions/SearchAction";
 
 const filter_price = [
-  {name: 'Low to high', value: 'ascending'},
-  {name: 'High to low', value: 'descending'}
+  { name: 'Low to high', value: 'ascending' },
+  { name: 'High to low', value: 'descending' }
 ]
 
-function ExploreLeft({loading}) {
+function ExploreLeft() {
   const [distance, setDistance] = useState(30)
   // const [selected, setSelected] = useState(filter_price[0])
-  const [selected_category, setSelecCategory] = useState("category");
+  const [selected_category, setSelecCategory] = useState('');
   const dispatch = useDispatch()
   console.log(distance)
 
 
-  const filter_by_category = () => {
-    // if(selected_category){
-    //   dispatch(search_item_Action(selected_category))
-    // }
+  const filter_by_category = (category) => {
+    dispatch(set_search_query_Action(category))
   };
 
   return (
@@ -81,7 +80,7 @@ function ExploreLeft({loading}) {
                 <Slider
                   aria-label="slider-ex-1"
                   defaultValue={30}
-                  onChange={val=> setDistance(val)}
+                  onChange={val => setDistance(val)}
                 >
                   <SliderTrack>
                     <SliderFilledTrack />
@@ -96,73 +95,16 @@ function ExploreLeft({loading}) {
               </p>
 
               {/* // categories */}
-              {!loading ? (
-                <div className="w-full py-2 z-10">
-                  <div className="w-full max-w-md mx-auto">
-                    <RadioGroup
-                      value={selected_category}
-                      onChange={(e) => {
-                        setSelecCategory(e);
-                        filter_by_category();
-                      }}
-                    >
-                      <RadioGroup.Label className="sr-only">
-                        category
-                      </RadioGroup.Label>
-                      <div className="space-y-2">
-                        {data.categories?.map((category) => (
-                          <RadioGroup.Option
-                            key={category.name}
-                            value={category}
-                            className={({ active, checked }) =>
-                              `${active ? "" : ""}
-                                                        ${
-                                                          checked
-                                                            ? "text-gray-700 "
-                                                            : "bg-white text-gray-700"
-                                                        }
-                                                    relative rounded px-2 py-2 cursor-pointer flex focus:outline-none`
-                            }
-                          >
-                            {({ active, checked }) => (
-                              <>
-                                <div className="flex items-center justify-between w-full">
-                                  <div className="flex items-center">
-                                    <div className="text-sm">
-                                      <RadioGroup.Label
-                                        as="p"
-                                        className={`text-sm ${
-                                          checked
-                                            ? "text-gray-900 font-semibold"
-                                            : "text-gray-500"
-                                        }`}
-                                      >
-                                        {category.name}
-                                      </RadioGroup.Label>
-                                    </div>
-                                  </div>
-                                  {checked && (
-                                    <NewCheckIcon className="w-6 h-6" />
-                                  )}
-                                </div>
-                              </>
-                            )}
-                          </RadioGroup.Option>
-                        ))}
-                      </div>
-                    </RadioGroup>
+
+
+              {
+                data.categories?.map((category, index) => (
+                  <div key={index} onClick={() => filter_by_category(category.name)} className="cursor-pointer ml-1">
+                    <p className="text-sm my-1 text-gray-700 hover:text-gray-900">{category.name}</p>
                   </div>
-                </div>
-              ) : (
-                <div class="animate-pulse flex flex-col space-x-4">
-                  <div class="flex-1 space-y-4 py-1">
-                    <div class="space-y-2">
-                      <div class="h-4 bg-gray-300 rounded"></div>
-                      <div class="h-4 bg-gray-400 rounded w-5/6"></div>
-                    </div>
-                  </div>
-                </div>
-              )}
+                ))
+              }
+
             </div>
           </div>
         </div>
@@ -172,18 +114,18 @@ function ExploreLeft({loading}) {
 }
 
 function NewCheckIcon(props) {
-    return (
-      <svg viewBox="0 0 24 24" fill="none" {...props}>
-        <circle cx={12} cy={12} r={12} fill="#fff" opacity="0.2" />
-        <path
-          d="M7 13l3 3 7-7"
-          stroke="#059669"
-          strokeWidth={1.5}
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    );
-  }
+  return (
+    <svg viewBox="0 0 24 24" fill="none" {...props}>
+      <circle cx={12} cy={12} r={12} fill="#fff" opacity="0.2" />
+      <path
+        d="M7 13l3 3 7-7"
+        stroke="#059669"
+        strokeWidth={1.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
 
 export default ExploreLeft;
